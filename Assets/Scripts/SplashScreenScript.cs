@@ -35,15 +35,13 @@ public class SplashScreenScript : MonoBehaviour
     {
         if (File.Exists(saveFile))
         {
-            GameObject HomeScreenInstance = Instantiate(HomeScreenPrefab,Vector3.zero, Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
-            SplashScreen.SetActive(false);
-
-
+            GameObject HomeScreenInstance = Instantiate(HomeScreenPrefab,GameObject.FindGameObjectWithTag("Canvas").transform);
+            Destroy(gameObject);
         }
         else
         {
             GameObject LoginScreenInstance = Instantiate(LoginScreenPrefab, GameObject.FindGameObjectWithTag("Canvas").transform);
-            SplashScreen.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }
