@@ -22,6 +22,7 @@ public class SplashScreenScript : MonoBehaviour
 
     void Start()
     {
+        EnterButton.onClick.RemoveAllListeners();
         EnterButton.onClick.AddListener(handleEnterButtonClick);
     }
 
@@ -35,13 +36,12 @@ public class SplashScreenScript : MonoBehaviour
     {
         if (File.Exists(saveFile))
         {
-            GameObject HomeScreenInstance = Instantiate(HomeScreenPrefab,GameObject.FindGameObjectWithTag("Canvas").transform);
-            Destroy(gameObject);
+            GameObject HomeScreenInstance = Instantiate(HomeScreenPrefab,transform.parent);
         }
         else
         {
-            GameObject LoginScreenInstance = Instantiate(LoginScreenPrefab, GameObject.FindGameObjectWithTag("Canvas").transform);
-            Destroy(gameObject);
+            GameObject LoginScreenInstance = Instantiate(LoginScreenPrefab, transform.parent);
         }
+        Destroy(gameObject);
     }
 }
