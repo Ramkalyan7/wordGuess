@@ -7,12 +7,17 @@ using UnityEngine;
 
 
 [Serializable]
-public struct Chance
+public class  Chance
 {
     public int ChanceNumber;
     public string StringEntered;
-    //different states of StateOfTheChance are used , unused and inbetween.
-    public string StateOfTheChance;
+
+    public Chance()
+    {
+        ChanceNumber = 0;
+        StringEntered = "";
+        
+    }
 }
 
 
