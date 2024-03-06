@@ -12,7 +12,6 @@ public class LoginScript : MonoBehaviour
      [SerializeField] private TMP_InputField LoginUserNameInputField;
      [SerializeField] private Button LoginButton;
      private string saveFile;
-     private User userData = new User();
      [SerializeField] private GameObject HomeScreenPrefab;
 
      private void Awake()
@@ -21,7 +20,8 @@ public class LoginScript : MonoBehaviour
      }
 
      void Start()
-    {
+     {
+        // User.Instance.UserName;
         LoginButton.onClick.AddListener(HandleLogin);
     }
      
@@ -29,10 +29,10 @@ public class LoginScript : MonoBehaviour
     private void HandleLogin()
     {
         if (LoginUserNameInputField.text.Length == 0) return;
-        userData.UserName = LoginUserNameInputField.text;
-        string jsonString = JsonUtility.ToJson(userData);
+        User.Instance.UserName = LoginUserNameInputField.text;
+        string jsonString = JsonUtility.ToJson(User.Instance);
         File.WriteAllText(saveFile,jsonString);
         Destroy(gameObject);
-        GameObject HomeScreenInstance = Instantiate(HomeScreenPrefab,GameObject.FindGameObjectWithTag("Canvas").transform);
+        GameObject HomeScreenInstance = Instantiate(HomeScreenPrefab,transform.parent);
     }
 }
