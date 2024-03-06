@@ -14,7 +14,7 @@ public class HomeScreenScript : MonoBehaviour
     //then I  have to parse the config file and render the levels
     //then by using the current level field of the user i have to render the status of the text accordingly.
     
-
+    
     [SerializeField] private TMP_Text UserNameText;
     [SerializeField] private GameObject LevelItemPrefab;
     [SerializeField] private RectTransform ParentRectTransform;
@@ -24,8 +24,13 @@ public class HomeScreenScript : MonoBehaviour
     private void Awake()
     {
        saveFile=Application.persistentDataPath + "/gamedata.json";
+       LevelItemScript.onButtonClicked += DestroyGameOjbect;
     }
 
+    public void DestroyGameOjbect()
+    {
+        Destroy(gameObject);
+    }
     void Start()
     {
         if (File.Exists(saveFile))
@@ -78,4 +83,9 @@ public class HomeScreenScript : MonoBehaviour
         }
     }
     
+
+    private void OnDestroy()
+    {
+        LevelItemScript.onButtonClicked -= DestroyGameOjbect;
+    }
 }
