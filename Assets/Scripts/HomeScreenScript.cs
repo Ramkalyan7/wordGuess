@@ -66,9 +66,15 @@ public class HomeScreenScript : MonoBehaviour
 
     void RenderGameLevels()
     {
+        var index = 0;
         foreach (var wordItem in Words.WordsInstance.WordsList)
         {
-            Instantiate(LevelItemPrefab, ParentRectTransform);
+            var levelItemInstance= Instantiate(LevelItemPrefab, ParentRectTransform);
+            if (levelItemInstance == null) continue;
+            var leveItemScriptReference = levelItemInstance.GetComponent<LevelItemScript>();
+            if (leveItemScriptReference == null) continue;
+            leveItemScriptReference.SetValuesOfText(index,wordItem.word);
+            index++;
         }
     }
     
