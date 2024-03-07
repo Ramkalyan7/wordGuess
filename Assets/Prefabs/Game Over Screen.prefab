@@ -320,6 +320,8 @@ MonoBehaviour:
   ResultText: {fileID: 5768305742054960927}
   TryAgainButton: {fileID: 6571740448232122941}
   GoBackToHomeScreenButton: {fileID: 4885203684295271897}
+  GameScreenPrefab: {fileID: 6721188308863182454, guid: 64344809914e44daa946b66930247ccc, type: 3}
+  HomeScreenPrefab: {fileID: 7376093092218314880, guid: 0b2441c2c8fe64124889ea80f557f1a1, type: 3}
 --- !u!1 &3152897821975713982
 GameObject:
   m_ObjectHideFlags: 0

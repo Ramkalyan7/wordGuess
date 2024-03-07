@@ -13,6 +13,8 @@ public class GameOverScreenScript : MonoBehaviour
     [SerializeField] private TMP_Text ResultText;
     [SerializeField] private Button TryAgainButton;
     [SerializeField] private Button GoBackToHomeScreenButton;
+    [SerializeField] private GameObject GameScreenPrefab;
+    [SerializeField] private GameObject HomeScreenPrefab;
     
     private void Start()
     {
@@ -39,12 +41,25 @@ public class GameOverScreenScript : MonoBehaviour
 
     void TryAgainButtonClickHandler()
     {
-        
+        GameObject GameScreenPrefabInstance=Instantiate(GameScreenPrefab,transform.parent);
+        if (GameScreenPrefabInstance != null)
+        {
+            var GameScreenScriptReference = GameScreenPrefabInstance.GetComponent<GameScreenScript>();
+            if (GameScreenScriptReference != null)
+            {
+                int LevelNumber = User.Instance.CurrentLevel;
+                string CurrentLevelSolution = Words.WordsInstance.WordsList[LevelNumber - 1].word;
+                GameScreenScriptReference.SetGameBoard(CurrentLevelSolution,LevelNumber);
+            }
+        }
+        Destroy(gameObject);
     }
 
     void GoBackToHomeScreenButtonClickHandler()
     {
         
+        GameObject HomeScreenInstance = Instantiate(HomeScreenPrefab,transform.parent);
+        Destroy(gameObject);
     }
 
     
