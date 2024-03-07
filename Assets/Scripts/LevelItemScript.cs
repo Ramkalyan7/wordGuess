@@ -19,19 +19,14 @@ public class LevelItemScript : MonoBehaviour
 
     private int LevelNumber;
     private string CurrentLevelSolution;
-    void Start()
-    {
-       LevelItem.onClick.AddListener(HandleLevelItemClick);   
-    }
+  
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
 
     public void SetValuesOfText(int  levelIndex , string currentSolution)
     {
+        
+        LevelItem.onClick.AddListener(HandleLevelItemClick); 
         LevelText.text = (levelIndex+1).ToString();
         CurrentLevelSolution = currentSolution;
         LevelNumber = levelIndex + 1;
@@ -41,6 +36,7 @@ public class LevelItemScript : MonoBehaviour
         if (levelIndex + 1 > currentLevelOfUser)
         {
             StatusText.text = "Locked";
+            LevelItem.onClick.RemoveAllListeners();
         }
         else if (levelIndex + 1 < currentLevelOfUser)
         {

@@ -147,12 +147,19 @@ public class GameScreenScript : MonoBehaviour
             
             User.Instance.Chances.Add(currentChanceObject);
             
+           
+            CurrentChanceNumberIndex++;
+            CurrentChanceIndex = 0;
+
+            if (currentChanceObject.StringEntered.ToUpper().Equals(SolutionString.ToUpper()))
+            {
+                EndCurrentLevel();
+                return;
+            }
+            
             string jsonString = JsonUtility.ToJson(User.Instance);
             File.WriteAllText(saveFile,jsonString);
             CurrentChanceScriptReference.ColorTheString(SolutionString);
-            CurrentChanceNumberIndex++;
-            CurrentChanceIndex = 0;
-           
         }
 
         if (CurrentChanceNumberIndex == 6)
@@ -164,31 +171,57 @@ public class GameScreenScript : MonoBehaviour
             //color the text.
             //show user game over screen
             
-            User.Instance.Chances.Clear();
-            User.Instance.CurrentLevel++;
-            string jsonString = JsonUtility.ToJson(User.Instance);
-            File.WriteAllText(saveFile,jsonString);
-            Debug.Log("Game Over");
+         EndCurrentLevel();
             
-            var CurrentChanceScriptReference = AllChances[CurrentChanceNumberIndex-1].GetComponent<ChanceScript>();
-             string lastChanceString =CurrentChanceScriptReference.GetString().ToUpper();
-
-
             
-            //initialise game over screen.
-           GameObject GameOverScreenPrefabInstance= Instantiate(GameOverScreenPrefab, transform.parent);
-           
-           Debug.Log(lastChanceString+" "+SolutionString);
-           if(lastChanceString.Equals(SolutionString.ToUpper()))
-               GameOverScreenPrefabInstance.GetComponent<GameOverScreenScript>().setGameOverScreen(true,SolutionString);
-           else
-           { 
-               GameOverScreenPrefabInstance.GetComponent<GameOverScreenScript>().setGameOverScreen(false,SolutionString);
-       
-           }
-            Destroy(gameObject);
+         
         }
         
+    }
+
+
+    public void EndCurrentLevel()
+    {
+        
+        
+        var CurrentChanceScriptReference = AllChances[CurrentChanceNumberIndex-1].GetComponent<ChanceScript>();
+        string lastChanceString =CurrentChanceScriptReference.GetString().ToUpper();
+
+
+            
+        //initialise game over screen.
+        GameObject GameOverScreenPrefabInstance= Instantiate(GameOverScreenPrefab, transform.parent);
+           
+        Debug.Log(lastChanceString+" "+SolutionString);
+        if (lastChanceString.Equals(SolutionString.ToUpper()))
+        {
+            GameOverScreenPrefabInstance.GetComponent<GameOverScreenScript>().setGameOverScreen(true,SolutionString);
+            User.Instance.CurrentLevel++;
+        }
+        else
+        { 
+            GameOverScreenPrefabInstance.GetComponent<GameOverScreenScript>().setGameOverScreen(false,SolutionString);
+       
+        }
+        User.Instance.Chances.Clear();
+        string jsonString = JsonUtility.ToJson(User.Instance);
+        File.WriteAllText(saveFile,jsonString);
+        Destroy(gameObject);
+    }
+
+
+    public void DisableKeyBoardKey(string keyToBeDisabled)
+    {
+        for (int i = 0; i < KeyBoard.Length; i++)
+        {
+            GameObject textReference= KeyBoard[i].transform.GetChild(0).gameObject;
+            string alphabet = textReference.GetComponent<Text>().text;
+            if (alphabet.Equals(keyToBeDisabled))
+            {
+                KeyBoard[i].onClick.RemoveAllListeners();
+                KeyBoard[i].GetComponent<Image>().color=new Color(0.5f, 0.5f, 0.5f, 1);
+            }
+        }
     }
     
 }

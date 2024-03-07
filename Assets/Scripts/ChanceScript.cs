@@ -44,6 +44,9 @@ public class ChanceScript : MonoBehaviour
             else
             {
                 currentTextsImageReference.color = new Color(0.5f, 0.5f, 0.5f, 1);
+                //disble this key
+                
+                gameObject.GetComponentInParent<GameScreenScript>().DisableKeyBoardKey(textItems[i].text);
             }
           
         }
