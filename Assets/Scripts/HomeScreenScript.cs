@@ -24,11 +24,12 @@ public class HomeScreenScript : MonoBehaviour
     private void Awake()
     {
        saveFile=Application.persistentDataPath + "/gamedata.json";
-       LevelItemScript.onButtonClicked += DestroyGameOjbect;
+       LevelItemScript.onButtonClicked += DestroyGameObject;
     }
 
-    public void DestroyGameOjbect()
+    public void DestroyGameObject()
     {
+        Debug.Log("destroy game object .....");
         Destroy(gameObject);
     }
     void Start()
@@ -86,6 +87,6 @@ public class HomeScreenScript : MonoBehaviour
 
     private void OnDestroy()
     {
-        LevelItemScript.onButtonClicked -= DestroyGameOjbect;
+        LevelItemScript.onButtonClicked -= DestroyGameObject;
     }
 }

@@ -4186,7 +4186,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChancePrefab: {fileID: 4563694550226340402, guid: bce7751db1cd943efa951cac26944d52, type: 3}
   ChancePrefabParent: {fileID: 4989489143698680234}
-  SubmitCurrentChanceButton: {fileID: 7323882850948073397}
+  CurrentChanceSubmitButton: {fileID: 7323882850948073397}
+  GameOverScreenPrefab: {fileID: 3010683653365865567, guid: f8fcf8852245b429386b373506c5cddd, type: 3}
   KeyBoard:
   - {fileID: 1176670800357456664}
   - {fileID: 2681627019696992441}

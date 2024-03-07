@@ -25,7 +25,7 @@ public class  Chance
 public class User 
 { 
     public string UserName;
-    public int CurrentLevel=0;
+    public int CurrentLevel=1;
     //different states are notattempted , incomplete and failed.
     //public string StateOfTheLevel;
      public List<Chance> Chances;
