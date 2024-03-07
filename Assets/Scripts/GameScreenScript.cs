@@ -16,6 +16,8 @@ public class GameScreenScript : MonoBehaviour
     [SerializeField] private GameObject ChancePrefabParent;
     [SerializeField] private Button CurrentChanceSubmitButton;
     [SerializeField] private GameObject GameOverScreenPrefab;
+    [SerializeField] private Button BackSpaceButton;
+    [SerializeField] private TMP_Text UserNameText;
     private string saveFile;
 
 
@@ -54,6 +56,7 @@ public class GameScreenScript : MonoBehaviour
         
         //to add listentens to the keyboard buttons
         AddListenersToAllTheButtonsOnKeyBoard();
+        BackSpaceButton.onClick.AddListener(BackSpaceButtonOnClickHandler);
         
         //to initialize all the chances
         InstantiateAllChances();
@@ -63,6 +66,9 @@ public class GameScreenScript : MonoBehaviour
         
         //Render game board
         RenderGameBoard();
+        
+        //Render user Name
+        RenderUserName();
     }
 
     void InstantiateAllChances()
@@ -222,6 +228,26 @@ public class GameScreenScript : MonoBehaviour
                 KeyBoard[i].GetComponent<Image>().color=new Color(0.5f, 0.5f, 0.5f, 1);
             }
         }
+    }
+
+    private void BackSpaceButtonOnClickHandler()
+    {
+        if (CurrentChanceIndex > 0)
+        {
+            CurrentChanceIndex--; 
+            AllChances[CurrentChanceNumberIndex].GetComponent<ChanceScript>().SetText("", CurrentChanceIndex);
+        }
+        else if (CurrentChanceIndex == 0)
+        {
+            AllChances[CurrentChanceNumberIndex].GetComponent<ChanceScript>().SetText("", CurrentChanceIndex);
+        }
+        
+        
+    }
+    
+    void RenderUserName()
+    {
+        UserNameText.text = User.Instance.UserName;
     }
     
 }

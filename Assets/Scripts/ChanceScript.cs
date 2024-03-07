@@ -30,25 +30,58 @@ public class ChanceScript : MonoBehaviour
         solutionString = solutionString.ToUpper();
         for (int i = 0; i < 5; i++)
         {
-            Image currentTextsImageReference =textItems[i].gameObject.GetComponentInParent<Image>();
-            if (textItems[i].text[0]==solutionString[i])
+            Image currentTextsImageReference = textItems[i].gameObject.GetComponentInParent<Image>();
+            if (textItems[i].text[0] == solutionString[i])
             {
                 currentTextsImageReference.color = new Color(0, 1, 0, 1);
-                
+
             }
-            else if (solutionString.Contains(textItems[i].text))
-            {
-               currentTextsImageReference.color = new Color(1, 0.92f, 0.016f, 1);
-            }
-            
-            else
+            else if (!solutionString.Contains(textItems[i].text))
             {
                 currentTextsImageReference.color = new Color(0.5f, 0.5f, 0.5f, 1);
-                //disble this key
-                
+                //disable this key
+
                 gameObject.GetComponentInParent<GameScreenScript>().DisableKeyBoardKey(textItems[i].text);
             }
-          
+
         }
+
+        for (int i = 0; i < 5; i++)
+        {
+            Image currentTextsImageReference = textItems[i].gameObject.GetComponentInParent<Image>();
+
+            int actualCount = 0;
+            int countInEnteredString = 0;
+            int markedGreenCount = 0;
+
+            for (int j = 0; j < i; j++)
+            {
+
+
+                if (textItems[j].text.ToUpper().Equals(textItems[i].text.ToUpper()) &&
+                    currentTextsImageReference.color != new Color(0, 1, 0, 1))
+                {
+                    countInEnteredString++;
+                }
+            }
+
+            for (int j = 0; j < 5; j++)
+            {
+                if (currentTextsImageReference.color == new Color(0, 1, 0, 1))
+                {
+                    markedGreenCount++;
+                }
+                if (solutionString[j].ToString().ToUpper().Equals(textItems[i].text.ToUpper()))
+                {
+                    actualCount++;
+                }
+            }
+
+            if (markedGreenCount + countInEnteredString < actualCount && solutionString.ToUpper().Contains(textItems[i].text.ToUpper()))
+            {
+                currentTextsImageReference.color = new Color(1, 0.92f, 0.016f, 1);
+            }
+        }
+
     }
 }
