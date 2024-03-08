@@ -54,22 +54,26 @@ public class ChanceScript : MonoBehaviour
             int countInEnteredString = 0;
             int markedGreenCount = 0;
 
-            for (int j = 0; j < i; j++)
+            for (int j = 0; j <i; j++)
             {
-
+                var currentColor = textItems[j].gameObject.GetComponentInParent<Image>().color;
 
                 if (textItems[j].text.ToUpper().Equals(textItems[i].text.ToUpper()) &&
-                    currentTextsImageReference.color != new Color(0, 1, 0, 1))
+                    !currentColor.Equals(new Color(0, 1, 0, 1)))
                 {
-                    countInEnteredString++;
+                    countInEnteredString++;                
                 }
             }
 
             for (int j = 0; j < 5; j++)
             {
-                if (currentTextsImageReference.color == new Color(0, 1, 0, 1))
+                var currentColor = textItems[j].gameObject.GetComponentInParent<Image>().color;
+                var greenColor = new Color(0, 1, 0, 1);
+                if ((int)(currentColor.r * 1000) == (int)(greenColor.r * 1000) && (int)(currentColor.g * 1000) == (int)(greenColor.g * 1000) && (int)(currentColor.b * 1000) == (int)(greenColor.b * 1000))
                 {
                     markedGreenCount++;
+                    Debug.Log(currentColor +" "+ j);
+                    
                 }
                 if (solutionString[j].ToString().ToUpper().Equals(textItems[i].text.ToUpper()))
                 {
@@ -77,10 +81,12 @@ public class ChanceScript : MonoBehaviour
                 }
             }
 
-            if (markedGreenCount + countInEnteredString < actualCount && solutionString.ToUpper().Contains(textItems[i].text.ToUpper()))
+            if ((markedGreenCount + countInEnteredString) < actualCount && solutionString.ToUpper().Contains(textItems[i].text.ToUpper()) && !currentTextsImageReference.color.Equals(
+                    new Color(0, 1, 0, 1)))
             {
                 currentTextsImageReference.color = new Color(1, 0.92f, 0.016f, 1);
-            }
+            } 
+            
         }
 
     }
