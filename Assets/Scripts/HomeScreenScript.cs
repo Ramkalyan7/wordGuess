@@ -19,7 +19,7 @@ public class HomeScreenScript : MonoBehaviour
     [SerializeField] private GameObject LevelItemPrefab;
     [SerializeField] private RectTransform ParentRectTransform;
     private string saveFile;
-    private string configFilePath = "Assets/Data/JSON/guess.json";
+    // private string configFilePath = Application.dataPath + "JSON/guess.json";
     
     private void Awake()
     {
@@ -39,12 +39,18 @@ public class HomeScreenScript : MonoBehaviour
             ReadUserData();
         }
 
-        if (File.Exists(configFilePath))
-        {
-            ReadConfigFile();
-        }
+        var a= Resources.Load<TextAsset>($"guess");
+        var b = a.text;
+        // var configFilePath = Path.Combine(Application.streamingAssetsPath, "/JSON/guess.json");
+        // Debug.LogError("reached here "+b);
+        // if (File.Exists(configFilePath))
+        // {
+        //     Debug.LogError("reached here 1");
+        //     
+        // }
+        ReadConfigFile();
 
-        if (File.Exists(saveFile) && File.Exists(configFilePath))
+        if (File.Exists(saveFile))
         {
            //render game levels
            RenderGameLevels();
@@ -66,7 +72,14 @@ public class HomeScreenScript : MonoBehaviour
 
     void ReadConfigFile()
     {
-        string configFileContents = File.ReadAllText(configFilePath);
+        Debug.LogError("loading config");
+        
+        var configFilePath = Path.Combine(Application.streamingAssetsPath, "JSON/guess.json");
+
+        var a= Resources.Load<TextAsset>($"guess");
+        // var b = a.text;
+        string configFileContents = a.text;
+        Debug.LogError($"config data :- {configFileContents}");
          Words.WordsInstance = JsonUtility.FromJson<Words>(configFileContents);
     }
 

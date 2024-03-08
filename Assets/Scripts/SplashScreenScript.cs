@@ -26,11 +26,6 @@ public class SplashScreenScript : MonoBehaviour
         EnterButton.onClick.AddListener(handleEnterButtonClick);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void handleEnterButtonClick()
     {
@@ -43,5 +38,6 @@ public class SplashScreenScript : MonoBehaviour
             GameObject LoginScreenInstance = Instantiate(LoginScreenPrefab, transform.parent);
         }
         Destroy(gameObject);
+        Debug.Log("Enter button is clicked");
     }
 }

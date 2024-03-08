@@ -226,8 +226,8 @@ public class GameScreenScript : MonoBehaviour
             string alphabet = textReference.GetComponent<Text>().text;
             if (alphabet.Equals(keyToBeDisabled))
             {
-                KeyBoard[i].onClick.RemoveAllListeners();
-                KeyBoard[i].GetComponent<Image>().color=new Color(0.5f, 0.5f, 0.5f, 1);
+                //KeyBoard[i].onClick.RemoveAllListeners();
+                KeyBoard[i].GetComponent<Image>().color=Constants.GrayColor;
             }
         }
     }
