@@ -33,14 +33,14 @@ public class ChanceScript : MonoBehaviour
             Image currentTextsImageReference = textItems[i].gameObject.GetComponentInParent<Image>();
             if (textItems[i].text[0] == solutionString[i])
             {
-                currentTextsImageReference.color = new Color(0, 1, 0, 1);
-                textItems[i].color = new Color(1, 1, 1, 1);
+                currentTextsImageReference.color = Constants.GreenColor;
+                textItems[i].color = Constants.WhiteColor;
 
             }
             else if (!solutionString.Contains(textItems[i].text))
             {
                 currentTextsImageReference.color = new Color(0.5f, 0.5f, 0.5f, 1);
-                textItems[i].color = new Color(1, 1, 1, 1);
+                textItems[i].color = Constants.WhiteColor;
 
                 //disable this key
 
@@ -62,7 +62,7 @@ public class ChanceScript : MonoBehaviour
                 var currentColor = textItems[j].gameObject.GetComponentInParent<Image>().color;
 
                 if (textItems[j].text.ToUpper().Equals(textItems[i].text.ToUpper()) &&
-                    !currentColor.Equals(new Color(0, 1, 0, 1)))
+                    !currentColor.Equals(Constants.GreenColor))
                 {
                     countInEnteredString++;                
                 }
@@ -71,7 +71,7 @@ public class ChanceScript : MonoBehaviour
             for (int j = 0; j < 5; j++)
             {
                 var currentColor = textItems[j].gameObject.GetComponentInParent<Image>().color;
-                var greenColor = new Color(0, 1, 0, 1);
+                var greenColor = Constants.GreenColor;
                 if (textItems[i].text.ToUpper().Equals(textItems[j].text.ToUpper()) && (int)(currentColor.r * 1000) == (int)(greenColor.r * 1000) && (int)(currentColor.g * 1000) == (int)(greenColor.g * 1000) && (int)(currentColor.b * 1000) == (int)(greenColor.b * 1000))
                 {
                     markedGreenCount++;
@@ -85,10 +85,10 @@ public class ChanceScript : MonoBehaviour
             }
 
             if ((markedGreenCount + countInEnteredString) < actualCount && solutionString.ToUpper().Contains(textItems[i].text.ToUpper()) && !currentTextsImageReference.color.Equals(
-                    new Color(0, 1, 0, 1)))
+                    Constants.GreenColor))
             {
-                currentTextsImageReference.color = new Color(1, 0.92f, 0.016f, 1);
-                textItems[i].color = new Color(1, 1, 1, 1);
+                currentTextsImageReference.color = Constants.YellowColor;
+                textItems[i].color = Constants.WhiteColor;
 
             } 
             Debug.Log(markedGreenCount +" "+ countInEnteredString+" "+actualCount + " "+i);
