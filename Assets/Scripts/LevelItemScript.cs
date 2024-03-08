@@ -50,6 +50,7 @@ public class LevelItemScript : MonoBehaviour
         {
            // StatusText.text = "Completed";
            StatusImage.sprite = CompletedLevelSprite;
+           LevelItem.onClick.RemoveAllListeners();
            StatusImage.color = new Color(0, 1, 0.5f, 1);
             LevelItemImageComponentReference.color = new Color(0, 1, 0, 0.5f);
             

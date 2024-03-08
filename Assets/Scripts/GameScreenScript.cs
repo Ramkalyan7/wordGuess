@@ -43,13 +43,17 @@ public class GameScreenScript : MonoBehaviour
     {
         //initialize class members according to the user data
 
-        if (User.Instance.Chances.Count == 0)
+        if (User.Instance.Chances.Count == 0 )
         {
             CurrentChanceNumberIndex = 0;
         }
-        else
+        else if(Level==User.Instance.CurrentLevel)
         {
             CurrentChanceNumberIndex = User.Instance.Chances.Count;
+        }
+        else
+        {
+            CurrentChanceNumberIndex = 0;
         }
 
         CurrentChanceIndex = 0;
