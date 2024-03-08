@@ -34,11 +34,14 @@ public class ChanceScript : MonoBehaviour
             if (textItems[i].text[0] == solutionString[i])
             {
                 currentTextsImageReference.color = new Color(0, 1, 0, 1);
+                textItems[i].color = new Color(1, 1, 1, 1);
 
             }
             else if (!solutionString.Contains(textItems[i].text))
             {
                 currentTextsImageReference.color = new Color(0.5f, 0.5f, 0.5f, 1);
+                textItems[i].color = new Color(1, 1, 1, 1);
+
                 //disable this key
 
                 gameObject.GetComponentInParent<GameScreenScript>().DisableKeyBoardKey(textItems[i].text);
@@ -69,7 +72,7 @@ public class ChanceScript : MonoBehaviour
             {
                 var currentColor = textItems[j].gameObject.GetComponentInParent<Image>().color;
                 var greenColor = new Color(0, 1, 0, 1);
-                if ((int)(currentColor.r * 1000) == (int)(greenColor.r * 1000) && (int)(currentColor.g * 1000) == (int)(greenColor.g * 1000) && (int)(currentColor.b * 1000) == (int)(greenColor.b * 1000))
+                if (textItems[i].text.ToUpper().Equals(textItems[j].text.ToUpper()) && (int)(currentColor.r * 1000) == (int)(greenColor.r * 1000) && (int)(currentColor.g * 1000) == (int)(greenColor.g * 1000) && (int)(currentColor.b * 1000) == (int)(greenColor.b * 1000))
                 {
                     markedGreenCount++;
                     Debug.Log(currentColor +" "+ j);
@@ -85,8 +88,10 @@ public class ChanceScript : MonoBehaviour
                     new Color(0, 1, 0, 1)))
             {
                 currentTextsImageReference.color = new Color(1, 0.92f, 0.016f, 1);
+                textItems[i].color = new Color(1, 1, 1, 1);
+
             } 
-            
+            Debug.Log(markedGreenCount +" "+ countInEnteredString+" "+actualCount + " "+i);
         }
 
     }

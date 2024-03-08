@@ -3458,7 +3458,7 @@ GameObject:
   - component: {fileID: 7190373995020101375}
   - component: {fileID: 5564095651598251446}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Hint Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4947,6 +4947,7 @@ MonoBehaviour:
   GameOverScreenPrefab: {fileID: 3010683653365865567, guid: f8fcf8852245b429386b373506c5cddd, type: 3}
   BackSpaceButton: {fileID: 5685180134093974283}
   UserNameText: {fileID: 8535335068286138592}
+  HintText: {fileID: 5564095651598251446}
   KeyBoard:
   - {fileID: 1176670800357456664}
   - {fileID: 2681627019696992441}

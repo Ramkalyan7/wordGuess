@@ -18,6 +18,7 @@ public class GameScreenScript : MonoBehaviour
     [SerializeField] private GameObject GameOverScreenPrefab;
     [SerializeField] private Button BackSpaceButton;
     [SerializeField] private TMP_Text UserNameText;
+    [SerializeField] private TMP_Text HintText;
     private string saveFile;
 
 
@@ -85,6 +86,7 @@ public class GameScreenScript : MonoBehaviour
         SolutionString = solutionString;
         Level = level;
         Debug.Log(solutionString + " "+ level);
+        HintText.text = Words.WordsInstance.WordsList[level - 1].hint;
 
     }
 
