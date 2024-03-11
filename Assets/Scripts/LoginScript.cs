@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SubsystemsImplementation;
 using UnityEngine.UI;
 
 public class LoginScript : MonoBehaviour
@@ -21,7 +20,7 @@ public class LoginScript : MonoBehaviour
 
      void Start()
      {
-        // User.Instance.UserName;
+        
         LoginButton.onClick.AddListener(HandleLogin);
     }
      
@@ -33,6 +32,6 @@ public class LoginScript : MonoBehaviour
         string jsonString = JsonUtility.ToJson(User.Instance);
         File.WriteAllText(saveFile,jsonString);
         Destroy(gameObject);
-        GameObject HomeScreenInstance = Instantiate(HomeScreenPrefab,transform.parent);
+        Instantiate(HomeScreenPrefab,transform.parent);
     }
 }

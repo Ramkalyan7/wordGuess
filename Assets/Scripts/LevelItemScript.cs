@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +13,6 @@ public class LevelItemScript : MonoBehaviour
     [SerializeField] private Image StatusImage;
     [SerializeField] private Button LevelItem;
     [SerializeField] private GameObject GameScreenPrefab;
-    [SerializeField] private RectTransform CanvasRectTransform;
     [SerializeField] private Sprite CurrentLevelSprite;
     [SerializeField] private Sprite LockedLevelSprite;
     [SerializeField] private Sprite CompletedLevelSprite;
@@ -31,7 +28,7 @@ public class LevelItemScript : MonoBehaviour
     {
         
         LevelItem.onClick.AddListener(HandleLevelItemClick); 
-        LevelText.text = "Level "+(levelIndex+1).ToString();
+        LevelText.text = "Level "+(levelIndex+1);
         CurrentLevelSolution = currentSolution;
         LevelNumber = levelIndex + 1;
         //StatusText.text = statusText;
@@ -54,11 +51,13 @@ public class LevelItemScript : MonoBehaviour
            StatusImage.color = new Color(0, 1, 0.5f, 1);
             LevelItemImageComponentReference.color = new Color(0, 1, 0, 0.5f);
             
-        }
+        } 
         else
         {
             //StatusText.text = "current";
             StatusImage.sprite = CurrentLevelSprite;
+            StatusImage.gameObject.transform.rotation=Quaternion.Euler(0,0,180);
+            
             StatusImage.color = new Color(1, 0.92f, 0.016f, 0.5f);
             LevelItemImageComponentReference.color = new Color(1, 0.92f, 0.016f, 0.5f);
         }
@@ -66,7 +65,7 @@ public class LevelItemScript : MonoBehaviour
 
     public void HandleLevelItemClick()
     {
-        GameObject GameScreenPrefabInstance=Instantiate(GameScreenPrefab,GameObject.FindGameObjectWithTag("Canvas").transform);
+        GameObject GameScreenPrefabInstance = Instantiate(GameScreenPrefab, GameObject.FindGameObjectWithTag("Canvas").transform);
         if (GameScreenPrefabInstance != null)
         {
             var GameScreenScriptReference = GameScreenPrefabInstance.GetComponent<GameScreenScript>();
@@ -74,10 +73,9 @@ public class LevelItemScript : MonoBehaviour
             {
                 GameScreenScriptReference.SetGameBoard(CurrentLevelSolution,LevelNumber);
             }
-            
+            onButtonClicked?.Invoke();
         }
         
-        onButtonClicked?.Invoke();
     }
 }
 

@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -90,7 +86,7 @@ public class GameScreenScript : MonoBehaviour
         SolutionString = solutionString;
         Level = level;
         Debug.Log(solutionString + " "+ level);
-        HintText.text = Words.WordsInstance.WordsList[level - 1].hint;
+        HintText.text ="Hint:"+ Words.WordsInstance.WordsList[level - 1].hint;
 
     }
 

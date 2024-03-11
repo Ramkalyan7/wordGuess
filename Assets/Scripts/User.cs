@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using JetBrains.Annotations;
-using UnityEngine;
 
 
 [Serializable]
@@ -25,7 +21,8 @@ public class  Chance
 public class User 
 { 
     public string UserName;
-    public int CurrentLevel=1;
+
+    public int CurrentLevel = 1;
     //different states are notattempted , incomplete and failed.
     //public string StateOfTheLevel;
      public List<Chance> Chances;

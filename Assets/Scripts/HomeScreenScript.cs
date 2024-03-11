@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -13,7 +9,6 @@ public class HomeScreenScript : MonoBehaviour
     //In home screen i have to get the user data that exists and render it eg :user name
     //then I  have to parse the config file and render the levels
     //then by using the current level field of the user i have to render the status of the text accordingly.
-    
     
     [SerializeField] private TMP_Text UserNameText;
     [SerializeField] private GameObject LevelItemPrefab;
@@ -38,16 +33,6 @@ public class HomeScreenScript : MonoBehaviour
         {
             ReadUserData();
         }
-
-        var a= Resources.Load<TextAsset>($"guess");
-        var b = a.text;
-        // var configFilePath = Path.Combine(Application.streamingAssetsPath, "/JSON/guess.json");
-        // Debug.LogError("reached here "+b);
-        // if (File.Exists(configFilePath))
-        // {
-        //     Debug.LogError("reached here 1");
-        //     
-        // }
         ReadConfigFile();
 
         if (File.Exists(saveFile))
@@ -72,12 +57,7 @@ public class HomeScreenScript : MonoBehaviour
 
     void ReadConfigFile()
     {
-        Debug.LogError("loading config");
-        
-        var configFilePath = Path.Combine(Application.streamingAssetsPath, "JSON/guess.json");
-
         var a= Resources.Load<TextAsset>($"guess");
-        // var b = a.text;
         string configFileContents = a.text;
         Debug.LogError($"config data :- {configFileContents}");
          Words.WordsInstance = JsonUtility.FromJson<Words>(configFileContents);
