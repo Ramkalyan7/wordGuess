@@ -186,7 +186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f4f4168d5b84d178af499fd7218da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnterButton: {fileID: 7048939222484916929}
   LoginScreenPrefab: {fileID: 7820863917224526557, guid: 5c8e416960b8b462ea706cf8862bfdac, type: 3}
   HomeScreenPrefab: {fileID: 7376093092218314880, guid: 0b2441c2c8fe64124889ea80f557f1a1, type: 3}
   SplashScreen: {fileID: 888803780065631981}
@@ -348,7 +347,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8711371913310846949}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8634616830414849167}
+        m_TargetAssemblyTypeName: SplashScreenScript, Assembly-CSharp
+        m_MethodName: HandleEnterButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4255683213707291390
 GameObject:
   m_ObjectHideFlags: 0

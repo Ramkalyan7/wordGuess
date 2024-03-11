@@ -15,17 +15,10 @@ public class LoginScript : MonoBehaviour
 
      private void Awake()
      {
-         saveFile=Application.persistentDataPath + "/gamedata.json";
+         saveFile = Constants.SaveFile;
      }
-
-     void Start()
-     {
-        
-        LoginButton.onClick.AddListener(HandleLogin);
-    }
      
-
-    private void HandleLogin()
+    public void HandleLogin()
     {
         if (LoginUserNameInputField.text.Length == 0) return;
         User.Instance.UserName = LoginUserNameInputField.text;

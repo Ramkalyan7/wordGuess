@@ -27,7 +27,7 @@ public class LevelItemScript : MonoBehaviour
     public void SetValuesOfText(int  levelIndex , string currentSolution)
     {
         
-        LevelItem.onClick.AddListener(HandleLevelItemClick); 
+       
         LevelText.text = "Level "+(levelIndex+1);
         CurrentLevelSolution = currentSolution;
         LevelNumber = levelIndex + 1;
@@ -39,7 +39,7 @@ public class LevelItemScript : MonoBehaviour
         {
             //StatusText.text = "Locked";
             StatusImage.sprite = LockedLevelSprite;
-            LevelItem.onClick.RemoveAllListeners();
+            LevelItem.interactable = false;
             StatusImage.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
             LevelItemImageComponentReference.color=new Color(0.5f, 0.5f, 0.5f,0.5f);
         }
@@ -47,7 +47,7 @@ public class LevelItemScript : MonoBehaviour
         {
            // StatusText.text = "Completed";
            StatusImage.sprite = CompletedLevelSprite;
-           LevelItem.onClick.RemoveAllListeners();
+           LevelItem.interactable = false;
            StatusImage.color = new Color(0, 1, 0.5f, 1);
             LevelItemImageComponentReference.color = new Color(0, 1, 0, 0.5f);
             

@@ -244,7 +244,6 @@ MonoBehaviour:
   StatusImage: {fileID: 5790314742400959735}
   LevelItem: {fileID: 9071494415218111121}
   GameScreenPrefab: {fileID: 6721188308863182454, guid: 64344809914e44daa946b66930247ccc, type: 3}
-  CanvasRectTransform: {fileID: 5506314126634012663, guid: 64b66a63a2ca542b9a1fb2215b411186, type: 3}
   CurrentLevelSprite: {fileID: 21300000, guid: c1d75f98aabb24141aec960df831976c, type: 3}
   LockedLevelSprite: {fileID: 21300000, guid: f19f035cf184b4d8b9b0400a3c68e0d7, type: 3}
   CompletedLevelSprite: {fileID: 21300000, guid: 51b7118b8a44a44d9b6d2b1aad1e3370, type: 3}
@@ -291,7 +290,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1182926224327144627}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3930313929190685502}
+        m_TargetAssemblyTypeName: LevelItemScript, Assembly-CSharp
+        m_MethodName: HandleLevelItemClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1833859099900624293
 GameObject:
   m_ObjectHideFlags: 0

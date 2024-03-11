@@ -2,6 +2,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using System.Threading.Tasks;
+
 
 public class GameScreenScript : MonoBehaviour
 {
@@ -10,15 +12,13 @@ public class GameScreenScript : MonoBehaviour
     private int Level;
     [SerializeField] private GameObject ChancePrefab;
     [SerializeField] private GameObject ChancePrefabParent;
-    [SerializeField] private Button CurrentChanceSubmitButton;
     [SerializeField] private GameObject GameOverScreenPrefab;
-    [SerializeField] private Button BackSpaceButton;
     [SerializeField] private TMP_Text UserNameText;
     [SerializeField] private TMP_Text HintText;
     private string saveFile;
 
 
-    private GameObject[] AllChances = new GameObject[6];
+    private ChanceScript[] AllChances = new ChanceScript[6];
 
     
 
@@ -32,13 +32,13 @@ public class GameScreenScript : MonoBehaviour
 
     private void Awake()
     {
-        saveFile=Application.persistentDataPath + "/gamedata.json";
+        saveFile = Constants.SaveFile;
     }
 
-    void Start()
-    {
-        //initialize class members according to the user data
+   
 
+    public void InitGameboard()
+    {
         if (User.Instance.Chances.Count == 0 )
         {
             CurrentChanceNumberIndex = 0;
@@ -57,13 +57,10 @@ public class GameScreenScript : MonoBehaviour
         
         //to add listentens to the keyboard buttons
         AddListenersToAllTheButtonsOnKeyBoard();
-        BackSpaceButton.onClick.AddListener(BackSpaceButtonOnClickHandler);
         
         //to initialize all the chances
         InstantiateAllChances();
         
-        //add listener to the CurrentChanceSubmitButton
-        CurrentChanceSubmitButton.onClick.AddListener(HandleCurrentChanceSubmitButtonClick);
         
         //Render game board
         RenderGameBoard();
@@ -76,7 +73,11 @@ public class GameScreenScript : MonoBehaviour
     {
         for (int i = 0; i < 6; i++)
         {
-            AllChances[i] = Instantiate(ChancePrefab, ChancePrefabParent.transform);
+            if (AllChances[i] != null)
+            {
+                Destroy(AllChances[i].gameObject);
+            }
+            AllChances[i] = Instantiate(ChancePrefab, ChancePrefabParent.transform).GetComponent<ChanceScript>();
         }
         
     }
@@ -87,7 +88,7 @@ public class GameScreenScript : MonoBehaviour
         Level = level;
         Debug.Log(solutionString + " "+ level);
         HintText.text ="Hint:"+ Words.WordsInstance.WordsList[level - 1].hint;
-
+        InitGameboard();
     }
 
     private void RenderGameBoard()
@@ -103,7 +104,7 @@ public class GameScreenScript : MonoBehaviour
             {
                 Chance currentChance = User.Instance.Chances[i];
                 string currentChanceString = currentChance.StringEntered;
-                var currentChanceScript=  AllChances[i].GetComponent<ChanceScript>();
+                var currentChanceScript=  AllChances[i];
                 for (int j = 0; j < currentChanceString.Length; j++)
                 {
                  
@@ -121,6 +122,8 @@ public class GameScreenScript : MonoBehaviour
         {
           GameObject textReference= KeyBoard[i].transform.GetChild(0).gameObject;
           string alphabet = textReference.GetComponent<Text>().text;
+          KeyBoard[i].GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            KeyBoard[i].onClick.RemoveAllListeners();
             KeyBoard[i].onClick.AddListener(delegate
             {
                 HandleKeyBoardButtonClick(alphabet);
@@ -130,11 +133,12 @@ public class GameScreenScript : MonoBehaviour
 
     void HandleKeyBoardButtonClick(string alphabet)
     {
-        if(CurrentChanceIndex<5)AllChances[CurrentChanceNumberIndex].GetComponent<ChanceScript>().SetText(alphabet, CurrentChanceIndex);
+        Debug.Log("clicked on handlekeyboardclick");
+        if(CurrentChanceIndex<5)AllChances[CurrentChanceNumberIndex].SetText(alphabet, CurrentChanceIndex);
         if (CurrentChanceIndex < 5) CurrentChanceIndex++;
     }
 
-    void HandleCurrentChanceSubmitButtonClick()
+    public void HandleCurrentChanceSubmitButtonClick()
     {
         
         
@@ -150,7 +154,7 @@ public class GameScreenScript : MonoBehaviour
             
             Chance currentChanceObject = new Chance();
             currentChanceObject.ChanceNumber = CurrentChanceNumberIndex + 1;
-             var CurrentChanceScriptReference = AllChances[CurrentChanceNumberIndex].GetComponent<ChanceScript>();
+             var CurrentChanceScriptReference = AllChances[CurrentChanceNumberIndex];
             currentChanceObject.StringEntered =CurrentChanceScriptReference.GetString();
             
             User.Instance.Chances.Add(currentChanceObject);
@@ -188,13 +192,15 @@ public class GameScreenScript : MonoBehaviour
     }
 
 
-    public void EndCurrentLevel()
+    public async void EndCurrentLevel()
     {
         
         
-        var CurrentChanceScriptReference = AllChances[CurrentChanceNumberIndex-1].GetComponent<ChanceScript>();
+        var CurrentChanceScriptReference = AllChances[CurrentChanceNumberIndex-1];
         string lastChanceString =CurrentChanceScriptReference.GetString().ToUpper();
+        CurrentChanceScriptReference.ColorTheString(SolutionString);
 
+        await Task.Delay(3000);
 
             
         //initialise game over screen.
@@ -232,16 +238,16 @@ public class GameScreenScript : MonoBehaviour
         }
     }
 
-    private void BackSpaceButtonOnClickHandler()
+    public void BackSpaceButtonOnClickHandler()
     {
         if (CurrentChanceIndex > 0)
         {
             CurrentChanceIndex--; 
-            AllChances[CurrentChanceNumberIndex].GetComponent<ChanceScript>().SetText("", CurrentChanceIndex);
+            AllChances[CurrentChanceNumberIndex].SetText("", CurrentChanceIndex);
         }
         else if (CurrentChanceIndex == 0)
         {
-            AllChances[CurrentChanceNumberIndex].GetComponent<ChanceScript>().SetText("", CurrentChanceIndex);
+            AllChances[CurrentChanceNumberIndex].SetText("", CurrentChanceIndex);
         }
         
         
@@ -251,6 +257,9 @@ public class GameScreenScript : MonoBehaviour
     {
         UserNameText.text = User.Instance.UserName;
     }
+    
+    
+    
     
 }
 

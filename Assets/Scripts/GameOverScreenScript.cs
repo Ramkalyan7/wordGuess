@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class GameOverScreenScript : MonoBehaviour
 {
@@ -9,16 +10,11 @@ public class GameOverScreenScript : MonoBehaviour
     private string SolutionString;
     [SerializeField] private TMP_Text ResultText;
     [SerializeField] private Button TryAgainButton;
-    [SerializeField] private Button GoBackToHomeScreenButton;
     [SerializeField] private GameObject GameScreenPrefab;
     [SerializeField] private GameObject HomeScreenPrefab;
     
     private void Start()
     {
-        //add listeners to button 
-        TryAgainButton.onClick.AddListener(TryAgainButtonClickHandler);
-        GoBackToHomeScreenButton.onClick.AddListener(GoBackToHomeScreenButtonClickHandler);
-
         if (GameResult == true)
         {
             ResultText.text = "Congrats You won ! Word is " + SolutionString;
@@ -36,7 +32,7 @@ public class GameOverScreenScript : MonoBehaviour
         SolutionString = solString;
     }
 
-    void TryAgainButtonClickHandler()
+    public void TryAgainButtonClickHandler()
     {
         GameObject GameScreenPrefabInstance=Instantiate(GameScreenPrefab,transform.parent);
         if (GameScreenPrefabInstance != null)
@@ -51,8 +47,10 @@ public class GameOverScreenScript : MonoBehaviour
         }
         Destroy(gameObject);
     }
+    
+    
 
-    void GoBackToHomeScreenButtonClickHandler()
+    public void GoBackToHomeScreenButtonClickHandler()
     {
         
         GameObject HomeScreenInstance = Instantiate(HomeScreenPrefab,transform.parent);

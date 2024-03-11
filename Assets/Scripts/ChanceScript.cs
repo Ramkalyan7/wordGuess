@@ -37,12 +37,16 @@ public class ChanceScript : MonoBehaviour
             }
             else if (!solutionString.Contains(textItems[i].text))
             {
-                currentTextsImageReference.color = new Color(0.5f, 0.5f, 0.5f, 1);
+                currentTextsImageReference.color = Constants.RedColor;
                 textItems[i].color = Constants.WhiteColor;
 
                 //disable this key
 
                 gameObject.GetComponentInParent<GameScreenScript>().DisableKeyBoardKey(textItems[i].text);
+            }
+            else
+            {
+                currentTextsImageReference.color = Constants.GrayColor;
             }
 
         }
@@ -70,10 +74,11 @@ public class ChanceScript : MonoBehaviour
             {
                 var currentColor = textItems[j].gameObject.GetComponentInParent<Image>().color;
                 var greenColor = Constants.GreenColor;
-                if (textItems[i].text.ToUpper().Equals(textItems[j].text.ToUpper()) && (int)(currentColor.r * 1000) == (int)(greenColor.r * 1000) && (int)(currentColor.g * 1000) == (int)(greenColor.g * 1000) && (int)(currentColor.b * 1000) == (int)(greenColor.b * 1000))
+                if (textItems[i].text.ToUpper().Equals(textItems[j].text.ToUpper()) && currentColor.Equals(greenColor) )
                 {
                     markedGreenCount++;
                     Debug.Log(currentColor +" "+ j);
+                    //(int)(currentColor.r * 1000) == (int)(greenColor.r * 1000) && (int)(currentColor.g * 1000) == (int)(greenColor.g * 1000) && (int)(currentColor.b * 1000) == (int)(greenColor.b * 1000)
                     
                 }
                 if (solutionString[j].ToString().ToUpper().Equals(textItems[i].text.ToUpper()))

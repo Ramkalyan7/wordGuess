@@ -18,7 +18,7 @@ public class HomeScreenScript : MonoBehaviour
     
     private void Awake()
     {
-       saveFile=Application.persistentDataPath + "/gamedata.json";
+        saveFile = Constants.SaveFile;
        LevelItemScript.onButtonClicked += DestroyGameObject;
     }
 
@@ -32,19 +32,15 @@ public class HomeScreenScript : MonoBehaviour
         if (File.Exists(saveFile))
         {
             ReadUserData();
-        }
-        ReadConfigFile();
+            ReadConfigFile();
 
-        if (File.Exists(saveFile))
-        {
-           //render game levels
-           RenderGameLevels();
+            RenderGameLevels();
         }
+
     }
 
     void ReadUserData()
     {
-        // Debug.LogError($"reached here {Application.persistentDataPath}");
         string fileContents = File.ReadAllText(saveFile);
         User.Instance = JsonUtility.FromJson<User>(fileContents);
         RenderUserName(); 

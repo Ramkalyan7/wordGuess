@@ -5,24 +5,19 @@ using UnityEngine.UI;
 public class SplashScreenScript : MonoBehaviour
 {
     
-    [SerializeField] private Button EnterButton;
     private string saveFile;
     [SerializeField] private GameObject LoginScreenPrefab;
     [SerializeField] private GameObject HomeScreenPrefab;
     [SerializeField] private GameObject SplashScreen;
     private void Awake()
     {
-        saveFile= Application.persistentDataPath + "/gamedata.json";
+        saveFile = Constants.SaveFile;
     }
 
-    void Start()
-    {
-        EnterButton.onClick.RemoveAllListeners();
-        EnterButton.onClick.AddListener(HandleEnterButtonClick);
-    }
+  
 
 
-    private void HandleEnterButtonClick()
+    public void HandleEnterButtonClick()
     {
         if (File.Exists(saveFile))
         {
