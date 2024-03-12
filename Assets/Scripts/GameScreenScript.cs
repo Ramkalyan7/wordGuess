@@ -84,7 +84,8 @@ public class GameScreenScript : MonoBehaviour
             {
                 Destroy(AllChances[i].gameObject);
             }
-            AllChances[i] = Instantiate(ChancePrefab, ChancePrefabParent.transform).GetComponent<ChanceScript>();
+            GameObject ChanceInstanceReference = Instantiate(ChancePrefab, ChancePrefabParent.transform);
+            AllChances[i] = ChanceInstanceReference.GetComponent<ChanceScript>();
         }
         
     }
