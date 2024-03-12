@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
 
 public class GameOverScreenScript : MonoBehaviour
 {
