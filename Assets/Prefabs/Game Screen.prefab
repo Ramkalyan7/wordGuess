@@ -345,7 +345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43487d522f97449e4b3871284eebe686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameScreenPrefab: {fileID: 6721188308863182454}
 --- !u!1 &352629296869070089
 GameObject:
   m_ObjectHideFlags: 0

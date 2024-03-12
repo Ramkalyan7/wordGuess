@@ -16,12 +16,12 @@ public class GameOverScreenScript : MonoBehaviour
     {
         if (GameResult == true)
         {
-            ResultText.text = "Congrats You won ! Word is " + SolutionString;
+            ResultText.text = Constants.GAMEOVERWINWISHTEXT+ SolutionString;
             TryAgainButton.gameObject.SetActive(false);
         }
         else
         {
-            ResultText.text = "Sorry , You Lost !";
+            ResultText.text =Constants.GAMEOVERLOSTWISHTEXT;
         }
     }
 
