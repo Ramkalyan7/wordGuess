@@ -14,7 +14,6 @@ public class HomeScreenScript : MonoBehaviour
     [SerializeField] private GameObject LevelItemPrefab;
     [SerializeField] private RectTransform ParentRectTransform;
     
-    // private string configFilePath = Application.dataPath + "JSON/guess.json";
     
     private void Awake()
     {
@@ -52,8 +51,8 @@ public class HomeScreenScript : MonoBehaviour
 
     void ReadConfigFile()
     {
-        var a= Resources.Load<TextAsset>($"guess");
-        string configFileContents = a.text;
+        var configFile= Resources.Load<TextAsset>($"guess");
+        string configFileContents = configFile.text;
         Debug.LogError($"config data :- {configFileContents}");
          Words.WordsInstance = JsonUtility.FromJson<Words>(configFileContents);
     }
