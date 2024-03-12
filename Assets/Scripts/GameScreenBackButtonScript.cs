@@ -10,14 +10,15 @@ public class GameScreenBackButtonScript : MonoBehaviour
    public void HandleBackButtonClick()
     {
         //instantiate home screen 
+        var parentGameObject = transform.parent.gameObject;
         
-      Instantiate(HomeScreenPrefab,GameObject.FindGameObjectWithTag("Canvas").transform);
+      Instantiate(HomeScreenPrefab,parentGameObject.transform.parent);
        
         
         
         //Destroy Game Screen
         
-        Destroy(transform.parent.gameObject);
+        Destroy(parentGameObject);
     }
    
 }
