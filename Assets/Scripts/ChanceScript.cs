@@ -28,16 +28,16 @@ public class ChanceScript : MonoBehaviour
         {
             if (textItems[i].text.text[0].Equals( solutionString[i]))
             {
-                textItems[i].image.color = Constants.GreenColor;
-                textItems[i].text.color = Constants.WhiteColor;
+                textItems[i].image.color = Constants.GREENCOLOR;
+                textItems[i].text.color = Constants.WHITECOLOR;
                 textItems[i].state = States.CorrectlyPositionedText;
                 //textItems[i].text
 
             }
             else if (!solutionString.Contains(textItems[i].text.text))
             {
-                textItems[i].image.color = Constants.RedColor;
-                textItems[i].text.color = Constants.WhiteColor;
+                textItems[i].image.color = Constants.REDCOLOR;
+                textItems[i].text.color = Constants.WHITECOLOR;
                 textItems[i].state = States.NotExistingText;
                 
 
@@ -47,8 +47,8 @@ public class ChanceScript : MonoBehaviour
             }
             else
             {
-                textItems[i].image.color = Constants.GrayColor;
-                textItems[i].text.color = Constants.WhiteColor;
+                textItems[i].image.color = Constants.GRAYCOLOR;
+                textItems[i].text.color = Constants.WHITECOLOR;
                 textItems[i].state = States.None;
             }
 
@@ -75,8 +75,6 @@ public class ChanceScript : MonoBehaviour
 
             for (int j = 0; j < 5; j++)
             {
-                var currentColor = textItems[j].image.color;
-                var greenColor = Constants.GreenColor;
                 
                 if (textItems[i].text.text.ToUpper().Equals(textItems[j].text.text.ToUpper()) && textItems[j].state.Equals(States.CorrectlyPositionedText))
                 {   
@@ -92,8 +90,8 @@ public class ChanceScript : MonoBehaviour
             if ((markedGreenCount + countInEnteredString) < actualCount && solutionString.ToUpper().Contains(textItems[i].text.text.ToUpper()) 
                                                                         && !textItems[i].state.Equals(States.CorrectlyPositionedText))
             {
-                textItems[i].image.color = Constants.YellowColor;
-                textItems[i].text.color = Constants.WhiteColor;
+                textItems[i].image.color = Constants.YELLOWCOLOR;
+                textItems[i].text.color = Constants.WHITECOLOR;
                 textItems[i].state = States.CorrectEnteredButWrongPositionText;
 
             } 

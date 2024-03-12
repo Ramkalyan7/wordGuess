@@ -15,7 +15,6 @@ public class GameScreenScript : MonoBehaviour
     [SerializeField] private GameObject GameOverScreenPrefab;
     [SerializeField] private TMP_Text UserNameText;
     [SerializeField] private TMP_Text HintText;
-    private string saveFile;
    // [SerializeField] private GameObject KeyBoardKeyPrefab;
    // [SerializeField] private GameObject KeyBoardKeysParent;
    // private GameObject[] KeyBoardKeysInstances = new GameObject[26];
@@ -33,10 +32,7 @@ public class GameScreenScript : MonoBehaviour
     //1.first i have to get that user have selected which level .
     //    if user selected current level I have to populate users data and render the gamescreen from user .............
 
-    private void Awake()
-    {
-        saveFile = Constants.SaveFile;
-    }
+   
 
    
 
@@ -181,7 +177,7 @@ public class GameScreenScript : MonoBehaviour
             }
             
             string jsonString = JsonUtility.ToJson(User.Instance);
-            File.WriteAllText(saveFile,jsonString);
+            File.WriteAllText(Constants.SAVEFILE,jsonString);
             CurrentChanceScriptReference.ColorTheString(SolutionString);
         }
 
@@ -230,7 +226,7 @@ public class GameScreenScript : MonoBehaviour
         }
         User.Instance.Chances.Clear();
         string jsonString = JsonUtility.ToJson(User.Instance);
-        File.WriteAllText(saveFile,jsonString);
+        File.WriteAllText(Constants.SAVEFILE,jsonString);
         Destroy(gameObject);
     }
 
@@ -243,7 +239,7 @@ public class GameScreenScript : MonoBehaviour
             string alphabet = textReference.GetComponent<Text>().text;
             if (alphabet.Equals(keyToBeDisabled))
             {
-                KeyBoard[i].GetComponent<Image>().color=Constants.GrayColor;
+                KeyBoard[i].GetComponent<Image>().color=Constants.GRAYCOLOR;
             }
         }
     }

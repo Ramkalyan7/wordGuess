@@ -5,21 +5,16 @@ using UnityEngine.UI;
 public class SplashScreenScript : MonoBehaviour
 {
     
-    private string saveFile;
     [SerializeField] private GameObject LoginScreenPrefab;
     [SerializeField] private GameObject HomeScreenPrefab;
     [SerializeField] private GameObject SplashScreen;
-    private void Awake()
-    {
-        saveFile = Constants.SaveFile;
-    }
-
+  
   
 
 
     public void HandleEnterButtonClick()
     {
-        if (File.Exists(saveFile))
+        if (File.Exists(Constants.SAVEFILE))
         {
            Instantiate(HomeScreenPrefab,transform.parent);
         }

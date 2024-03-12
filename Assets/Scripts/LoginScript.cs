@@ -10,20 +10,20 @@ public class LoginScript : MonoBehaviour
 {
      [SerializeField] private TMP_InputField LoginUserNameInputField;
      [SerializeField] private Button LoginButton;
-     private string saveFile;
+     
      [SerializeField] private GameObject HomeScreenPrefab;
 
-     private void Awake()
-     {
-         saveFile = Constants.SaveFile;
-     }
+   
      
     public void HandleLogin()
     {
-        if (LoginUserNameInputField.text.Length == 0) return;
+        if (LoginUserNameInputField.text.Length == 0)
+        {
+            return;
+        }
         User.Instance.UserName = LoginUserNameInputField.text;
         string jsonString = JsonUtility.ToJson(User.Instance);
-        File.WriteAllText(saveFile,jsonString);
+        File.WriteAllText(Constants.SAVEFILE,jsonString);
         Destroy(gameObject);
         Instantiate(HomeScreenPrefab,transform.parent);
     }

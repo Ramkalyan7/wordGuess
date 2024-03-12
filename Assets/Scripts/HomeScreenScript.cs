@@ -13,12 +13,11 @@ public class HomeScreenScript : MonoBehaviour
     [SerializeField] private TMP_Text UserNameText;
     [SerializeField] private GameObject LevelItemPrefab;
     [SerializeField] private RectTransform ParentRectTransform;
-    private string saveFile;
+    
     // private string configFilePath = Application.dataPath + "JSON/guess.json";
     
     private void Awake()
     {
-        saveFile = Constants.SaveFile;
        LevelItemScript.onButtonClicked += DestroyGameObject;
     }
 
@@ -29,7 +28,7 @@ public class HomeScreenScript : MonoBehaviour
     }
     void Start()
     {
-        if (File.Exists(saveFile))
+        if (File.Exists(Constants.SAVEFILE))
         {
             ReadUserData();
             ReadConfigFile();
@@ -41,7 +40,7 @@ public class HomeScreenScript : MonoBehaviour
 
     void ReadUserData()
     {
-        string fileContents = File.ReadAllText(saveFile);
+        string fileContents = File.ReadAllText(Constants.SAVEFILE);
         User.Instance = JsonUtility.FromJson<User>(fileContents);
         RenderUserName(); 
     }
@@ -68,7 +67,7 @@ public class HomeScreenScript : MonoBehaviour
             if (levelItemInstance == null) continue;
             var leveItemScriptReference = levelItemInstance.GetComponent<LevelItemScript>();
             if (leveItemScriptReference == null) continue;
-            leveItemScriptReference.SetValuesOfText(index,wordItem.word);
+            leveItemScriptReference.SetValuesOfText(index, wordItem.word, transform.parent);
             index++;
         }
     }

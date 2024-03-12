@@ -16,6 +16,7 @@ public class LevelItemScript : MonoBehaviour
     [SerializeField] private Sprite CurrentLevelSprite;
     [SerializeField] private Sprite LockedLevelSprite;
     [SerializeField] private Sprite CompletedLevelSprite;
+     private Transform _canvasTransform;
     
 
     private int LevelNumber;
@@ -24,10 +25,10 @@ public class LevelItemScript : MonoBehaviour
 
   
 
-    public void SetValuesOfText(int  levelIndex , string currentSolution)
+    public void SetValuesOfText(int  levelIndex , string currentSolution,Transform canvasTransform)
     {
-        
-       
+
+        _canvasTransform = canvasTransform;
         LevelText.text = "Level "+(levelIndex+1);
         CurrentLevelSolution = currentSolution;
         LevelNumber = levelIndex + 1;
@@ -65,7 +66,7 @@ public class LevelItemScript : MonoBehaviour
 
     public void HandleLevelItemClick()
     {
-        GameObject GameScreenPrefabInstance = Instantiate(GameScreenPrefab, GameObject.FindGameObjectWithTag("Canvas").transform);
+        GameObject GameScreenPrefabInstance = Instantiate(GameScreenPrefab, _canvasTransform);
         if (GameScreenPrefabInstance != null)
         {
             var GameScreenScriptReference = GameScreenPrefabInstance.GetComponent<GameScreenScript>();
