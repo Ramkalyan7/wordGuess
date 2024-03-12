@@ -16,6 +16,9 @@ public class GameScreenScript : MonoBehaviour
     [SerializeField] private TMP_Text UserNameText;
     [SerializeField] private TMP_Text HintText;
     private string saveFile;
+   // [SerializeField] private GameObject KeyBoardKeyPrefab;
+   // [SerializeField] private GameObject KeyBoardKeysParent;
+   // private GameObject[] KeyBoardKeysInstances = new GameObject[26];
 
 
     private ChanceScript[] AllChances = new ChanceScript[6];
@@ -67,6 +70,14 @@ public class GameScreenScript : MonoBehaviour
         
         //Render user Name
         RenderUserName();
+        
+        
+        //initialise key board
+
+        // for (int i = 0; i < 26; i++)
+        // {
+        //     KeyBoardKeysInstances[i] = Instantiate(KeyBoardKeyPrefab, KeyBoardKeysParent.transform);
+        // }
     }
 
     void InstantiateAllChances()
@@ -232,7 +243,6 @@ public class GameScreenScript : MonoBehaviour
             string alphabet = textReference.GetComponent<Text>().text;
             if (alphabet.Equals(keyToBeDisabled))
             {
-                //KeyBoard[i].onClick.RemoveAllListeners();
                 KeyBoard[i].GetComponent<Image>().color=Constants.GrayColor;
             }
         }
@@ -257,10 +267,6 @@ public class GameScreenScript : MonoBehaviour
     {
         UserNameText.text = User.Instance.UserName;
     }
-    
-    
-    
-    
 }
 
 
