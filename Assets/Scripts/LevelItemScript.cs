@@ -25,7 +25,7 @@ public class LevelItemScript : MonoBehaviour
 
   
 
-    public void SetValuesOfText(int  levelIndex , string currentSolution,Transform canvasTransform)
+    public void SetLevelsTextAndStatus(int  levelIndex , string currentSolution,Transform canvasTransform)
     {
 
         _canvasTransform = canvasTransform;
