@@ -211,7 +211,7 @@ public class GameScreenScript : MonoBehaviour
         string lastChanceString =CurrentChanceScriptReference.GetString().ToUpper();
         CurrentChanceScriptReference.ColorTheString(SolutionString);
 
-        await Task.Delay(3000);
+        await Task.Delay(1500);
 
             
         //initialise game over screen.

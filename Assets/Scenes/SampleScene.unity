@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1874396190}
     m_Modifications:
+    - target: {fileID: 330249242129896143, guid: c7acf3e3cf9ce49a5bdecdc261f4f8f4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 330249242129896143, guid: c7acf3e3cf9ce49a5bdecdc261f4f8f4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 888803780065631981, guid: c7acf3e3cf9ce49a5bdecdc261f4f8f4, type: 3}
       propertyPath: m_Name
       value: Splash Screen
