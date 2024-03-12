@@ -4,15 +4,9 @@ using System.IO;
 
 public class GameScreenTryAgainButtonScript : MonoBehaviour
 {
-    [SerializeField] private GameObject GameScreenPrefab;
 
     public void TryAgainButtonClickHandlerFromGameScreen()
     {
-
-
-
-        // GameObject GameScreenPrefabInstance=Instantiate(GameScreenPrefab, GameObject.FindGameObjectWithTag("Canvas").transform);
-
         var GameScreenScriptReference = transform.parent.GetComponent<GameScreenScript>();
         if (GameScreenScriptReference != null)
         {
@@ -24,11 +18,5 @@ public class GameScreenTryAgainButtonScript : MonoBehaviour
             string CurrentLevelSolution = Words.WordsInstance.WordsList[LevelNumber - 1].word;
             GameScreenScriptReference.SetGameBoard(CurrentLevelSolution, LevelNumber);
         }
-
-
-        // Destroy(transform.parent.gameObject);
-
-
-        Debug.Log("clicked on try again");
     }
 }
