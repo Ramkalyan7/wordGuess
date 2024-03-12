@@ -12,11 +12,9 @@ public class LevelItemScript : MonoBehaviour
     [SerializeField] private TMP_Text LevelText;
     [SerializeField] private Image StatusImage;
     [SerializeField] private Button LevelItem;
-    [SerializeField] private GameObject GameScreenPrefab;
     [SerializeField] private Sprite CurrentLevelSprite;
     [SerializeField] private Sprite LockedLevelSprite;
     [SerializeField] private Sprite CompletedLevelSprite;
-     private Transform _canvasTransform;
     
 
     private int LevelNumber;
@@ -25,10 +23,9 @@ public class LevelItemScript : MonoBehaviour
 
   
 
-    public void SetLevelsTextAndStatus(int  levelIndex , string currentSolution,Transform canvasTransform)
+    public void SetLevelsTextAndStatus(int  levelIndex , string currentSolution)
     {
 
-        _canvasTransform = canvasTransform;
         LevelText.text = "Level "+(levelIndex+1);
         CurrentLevelSolution = currentSolution;
         LevelNumber = levelIndex + 1;
@@ -66,16 +63,18 @@ public class LevelItemScript : MonoBehaviour
 
     public void HandleLevelItemClick()
     {
-        GameObject GameScreenPrefabInstance = Instantiate(GameScreenPrefab, _canvasTransform);
-        if (GameScreenPrefabInstance != null)
-        {
-            var GameScreenScriptReference = GameScreenPrefabInstance.GetComponent<GameScreenScript>();
-            if (GameScreenScriptReference != null)
-            {
-                GameScreenScriptReference.SetGameBoard(CurrentLevelSolution,LevelNumber);
-            }
-            onButtonClicked?.Invoke();
-        }
+        // GameObject GameScreenPrefabInstance = Instantiate(GameScreenPrefab, _canvasTransform);
+        // if (GameScreenPrefabInstance != null)
+        // {
+        //     var GameScreenScriptReference = GameScreenPrefabInstance.GetComponent<GameScreenScript>();
+        //     if (GameScreenScriptReference != null)
+        //     {
+        //         GameScreenScriptReference.SetGameBoard(CurrentLevelSolution,LevelNumber);
+        //     }
+        //    
+        // }
+        
+        onButtonClicked?.Invoke();
         
     }
 }

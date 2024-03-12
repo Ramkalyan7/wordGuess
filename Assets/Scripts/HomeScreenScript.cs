@@ -13,15 +13,27 @@ public class HomeScreenScript : MonoBehaviour
     [SerializeField] private TMP_Text UserNameText;
     [SerializeField] private GameObject LevelItemPrefab;
     [SerializeField] private RectTransform ParentRectTransform;
+    [SerializeField] private GameObject GameScreenPrefab;
     
     
     private void Awake()
     {
-       LevelItemScript.onButtonClicked += DestroyGameObject;
+       LevelItemScript.onButtonClicked += InstantiateGameScreenAndDestroyHomeScreenGameObject;
     }
 
-    public void DestroyGameObject()
+    public void InstantiateGameScreenAndDestroyHomeScreenGameObject()
     {
+        GameObject GameScreenPrefabInstance = Instantiate(GameScreenPrefab,transform.parent);
+        if (GameScreenPrefabInstance != null)
+        {
+            var GameScreenScriptReference = GameScreenPrefabInstance.GetComponent<GameScreenScript>();
+            if (GameScreenScriptReference != null)
+            {
+                var currentLevel = User.Instance.CurrentLevel;
+                GameScreenScriptReference.SetGameBoard(Words.WordsInstance.WordsList[currentLevel-1].word,currentLevel);
+            }
+           
+        }
         Debug.Log("destroy game object .....");
         Destroy(gameObject);
     }
@@ -66,7 +78,7 @@ public class HomeScreenScript : MonoBehaviour
             if (levelItemInstance == null) continue;
             var leveItemScriptReference = levelItemInstance.GetComponent<LevelItemScript>();
             if (leveItemScriptReference == null) continue;
-            leveItemScriptReference.SetLevelsTextAndStatus(index, wordItem.word, transform.parent);
+            leveItemScriptReference.SetLevelsTextAndStatus(index, wordItem.word);
             index++;
         }
     }
@@ -74,6 +86,6 @@ public class HomeScreenScript : MonoBehaviour
 
     private void OnDestroy()
     {
-        LevelItemScript.onButtonClicked -= DestroyGameObject;
+        LevelItemScript.onButtonClicked -= InstantiateGameScreenAndDestroyHomeScreenGameObject;
     }
 }

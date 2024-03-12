@@ -432,6 +432,7 @@ MonoBehaviour:
   UserNameText: {fileID: 7376093092124223134}
   LevelItemPrefab: {fileID: 1182926224327144629, guid: 0c6814561aa4441c68f96ce25cd75d72, type: 3}
   ParentRectTransform: {fileID: 7376093091826877242}
+  GameScreenPrefab: {fileID: 6721188308863182454, guid: 64344809914e44daa946b66930247ccc, type: 3}
 --- !u!222 &2779801281638915309
 CanvasRenderer:
   m_ObjectHideFlags: 0
