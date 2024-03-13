@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,9 +33,25 @@ public class GameScreenScript : MonoBehaviour
     //1.first i have to get that user have selected which level .
     //    if user selected current level I have to populate users data and render the gamescreen from user .............
 
-   
+    public void Update()
+    {
+        HighlightCurrentActiveRow();
+        SetSubmitButtonState();
 
-   
+    }
+
+    public void HighlightCurrentActiveRow()
+    {
+        AllChances[CurrentChanceNumberIndex].HighlightCurrentActiveRow();
+    }
+
+    private void SetSubmitButtonState()
+    {
+        
+    }
+    
+    
+
 
     public void InitGameboard()
     {

@@ -7,6 +7,10 @@ public class ChanceScript : MonoBehaviour
     public void SetText(string enteredAlphabet,int index)
     {
         textItems[index].text.text = enteredAlphabet;
+        if (index == 4)
+        {
+            textItems[index].image.color = Constants.WHITECOLOR;
+        }
     }
 
     public string GetString()
@@ -18,6 +22,16 @@ public class ChanceScript : MonoBehaviour
         }
 
         return enteredString;
+    }
+
+    public void HighlightCurrentActiveRow()
+    {
+      
+        for (int i = 0; i < 5; i++)
+        {
+            textItems[i].image.color = new Color(0.53f,0.8f,0.92f,1);
+        }
+        
     }
 
     public void ColorTheString(string solutionString)
