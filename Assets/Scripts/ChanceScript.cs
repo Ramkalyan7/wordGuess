@@ -22,6 +22,7 @@ public class ChanceScript : MonoBehaviour
 
     public void ColorTheString(string solutionString)
     {
+        var GameScreenScriptReference = gameObject.gameObject.GetComponentInParent<GameScreenScript>();
         solutionString = solutionString.ToUpper();
         for (int i = 0; i < 5; i++)
         {
@@ -42,7 +43,7 @@ public class ChanceScript : MonoBehaviour
 
                 //disable this key
 
-                gameObject.gameObject.GetComponentInParent<GameScreenScript>().DisableKeyBoardKey(textItems[i].text.text);
+                GameScreenScriptReference.ColorKeyBoardKeys(textItems[i].text.text,textItems[i].state);
             }
             else
             {
@@ -92,6 +93,7 @@ public class ChanceScript : MonoBehaviour
                 textItems[i].image.color = Constants.YELLOWCOLOR;
                 textItems[i].text.color = Constants.WHITECOLOR;
                 textItems[i].state = States.CorrectEnteredButWrongPositionText;
+                GameScreenScriptReference.ColorKeyBoardKeys(textItems[i].text.text,textItems[i].state);
 
             } 
           

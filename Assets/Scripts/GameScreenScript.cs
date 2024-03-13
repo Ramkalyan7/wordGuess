@@ -202,15 +202,9 @@ public class GameScreenScript : MonoBehaviour
 
     public  void EndCurrentLevel()
     {
-        
-        
         var CurrentChanceScriptReference = AllChances[CurrentChanceNumberIndex-1];
         CurrentChanceScriptReference.ColorTheString(SolutionString);
-
-        
         Invoke(nameof(ShowGameOverScreen),1.5f);
-            
-        
     }
 
     private void ShowGameOverScreen()
@@ -238,15 +232,24 @@ public class GameScreenScript : MonoBehaviour
     }
 
 
-    public void DisableKeyBoardKey(string keyToBeDisabled)
+    public void ColorKeyBoardKeys(string key , States currentLetterState)
     {
         for (int i = 0; i < KeyBoard.Length; i++)
         {
             GameObject textReference= KeyBoard[i].transform.GetChild(0).gameObject;
             string alphabet = textReference.GetComponent<Text>().text;
-            if (alphabet.Equals(keyToBeDisabled))
+            if (alphabet.Equals(key))
             {
-                KeyBoard[i].GetComponent<Image>().color=Constants.GRAYCOLOR;
+                if (currentLetterState.Equals(States.NotExistingText))
+                {
+                    KeyBoard[i].GetComponent<Image>().color=Constants.REDCOLOR;
+                }
+                else if (currentLetterState.Equals(States.CorrectEnteredButWrongPositionText))
+                {
+                    KeyBoard[i].GetComponent<Image>().color = Constants.YELLOWCOLOR;
+                }
+
+                textReference.GetComponent<Text>().color = Constants.WHITECOLOR;
             }
         }
     }

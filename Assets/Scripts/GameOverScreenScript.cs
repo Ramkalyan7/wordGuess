@@ -9,6 +9,7 @@ public class GameOverScreenScript : MonoBehaviour
     private string SolutionString;
     [SerializeField] private TMP_Text ResultText;
     [SerializeField] private Button TryAgainButton;
+    [SerializeField] private Button PlayNextLevelButton;
     [SerializeField] private GameObject GameScreenPrefab;
     [SerializeField] private GameObject HomeScreenPrefab;
     
@@ -22,6 +23,7 @@ public class GameOverScreenScript : MonoBehaviour
         else
         {
             ResultText.text =Constants.GAMEOVERLOSTWISHTEXT;
+            PlayNextLevelButton.gameObject.SetActive(false);
         }
     }
 
@@ -55,6 +57,23 @@ public class GameOverScreenScript : MonoBehaviour
         Instantiate(HomeScreenPrefab,transform.parent);
         Destroy(gameObject);
     }
-
     
+    
+    
+    public void InstantiateGameScreenAndDestroyGameOverScreenGameObject()
+    {
+        GameObject GameScreenPrefabInstance = Instantiate(GameScreenPrefab,transform.parent);
+        if (GameScreenPrefabInstance != null)
+        {
+            var GameScreenScriptReference = GameScreenPrefabInstance.GetComponent<GameScreenScript>();
+            if (GameScreenScriptReference != null)
+            {
+                var currentLevel = User.Instance.CurrentLevel;
+                GameScreenScriptReference.SetGameBoard(Words.WordsInstance.WordsList[currentLevel-1].word,currentLevel);
+            }
+           
+        }
+        Debug.Log("destroy game object .....");
+        Destroy(gameObject);
+    }
 }
