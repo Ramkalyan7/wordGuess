@@ -29,7 +29,7 @@ public class ChanceScript : MonoBehaviour
       
         for (int i = 0; i < 5; i++)
         {
-            textItems[i].image.color = new Color(0.53f,0.8f,0.92f,1);
+            textItems[i].image.color = Constants.SKYBLUECOLOR;
         }
         
     }

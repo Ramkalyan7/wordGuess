@@ -16,6 +16,8 @@ public class GameScreenScript : MonoBehaviour
     [SerializeField] private GameObject GameOverScreenPrefab;
     [SerializeField] private TMP_Text UserNameText;
     [SerializeField] private TMP_Text HintText;
+
+    [SerializeField] private Button SubmitButton;
    // [SerializeField] private GameObject KeyBoardKeyPrefab;
    // [SerializeField] private GameObject KeyBoardKeysParent;
    // private GameObject[] KeyBoardKeysInstances = new GameObject[26];
@@ -42,12 +44,22 @@ public class GameScreenScript : MonoBehaviour
 
     public void HighlightCurrentActiveRow()
     {
-        AllChances[CurrentChanceNumberIndex].HighlightCurrentActiveRow();
+        if (CurrentChanceNumberIndex >= 0 && CurrentChanceNumberIndex <= 5)
+        {
+            AllChances[CurrentChanceNumberIndex].HighlightCurrentActiveRow();
+        }
     }
 
     private void SetSubmitButtonState()
     {
-        
+        if (CurrentChanceIndex == 5)
+        {
+            SubmitButton.interactable = true;
+        }
+        else
+        {
+            SubmitButton.interactable = false;
+        }
     }
     
     
@@ -259,14 +271,12 @@ public class GameScreenScript : MonoBehaviour
             {
                 if (currentLetterState.Equals(States.NotExistingText))
                 {
-                    KeyBoard[i].GetComponent<Image>().color=Constants.REDCOLOR;
+                    KeyBoard[i].GetComponent<Image>().color=Constants.GRAYCOLOR;
                 }
                 else if (currentLetterState.Equals(States.CorrectEnteredButWrongPositionText))
                 {
-                    KeyBoard[i].GetComponent<Image>().color = Constants.YELLOWCOLOR;
+                    KeyBoard[i].GetComponent<Image>().color = Constants.SKYBLUECOLOR;
                 }
-
-                textReference.GetComponent<Text>().color = Constants.WHITECOLOR;
             }
         }
     }
