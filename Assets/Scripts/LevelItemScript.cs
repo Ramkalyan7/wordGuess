@@ -39,7 +39,7 @@ public class LevelItemScript : MonoBehaviour
             StatusImage.sprite = LockedLevelSprite;
             LevelItem.interactable = false;
             StatusImage.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-            LevelItemImageComponentReference.color=new Color(0.5f, 0.5f, 0.5f,0.5f);
+            LevelItemImageComponentReference.color=new Color(0, 0, 0,0.8f);
         }
         else if (levelIndex + 1 < currentLevelOfUser)
         {
