@@ -200,18 +200,24 @@ public class GameScreenScript : MonoBehaviour
     }
 
 
-    public async void EndCurrentLevel()
+    public  void EndCurrentLevel()
     {
         
         
         var CurrentChanceScriptReference = AllChances[CurrentChanceNumberIndex-1];
-        string lastChanceString =CurrentChanceScriptReference.GetString().ToUpper();
         CurrentChanceScriptReference.ColorTheString(SolutionString);
 
-        await Task.Delay(1500);
-
+        
+        Invoke(nameof(ShowGameOverScreen),1.5f);
             
+        
+    }
+
+    private void ShowGameOverScreen()
+    {
         //initialise game over screen.
+        var CurrentChanceScriptReference = AllChances[CurrentChanceNumberIndex-1];
+        string lastChanceString =CurrentChanceScriptReference.GetString().ToUpper();
         GameObject GameOverScreenPrefabInstance= Instantiate(GameOverScreenPrefab, transform.parent);
            
         Debug.Log(lastChanceString+" "+SolutionString);
