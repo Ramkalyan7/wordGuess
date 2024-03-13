@@ -21,7 +21,7 @@ public class LevelItemScript : MonoBehaviour
 
   
 
-    public void SetLevelsTextAndStatus(int  levelIndex , string currentSolution)
+    public void SetLevelsTextAndStatus(int  levelIndex)
     {
 
         LevelText.text = "Level "+(levelIndex+1);
@@ -51,7 +51,7 @@ public class LevelItemScript : MonoBehaviour
         {
             //StatusText.text = "current";
             StatusImage.sprite = CurrentLevelSprite;
-            StatusImage.gameObject.transform.rotation=Quaternion.Euler(0,0,180);
+            StatusImage.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 180);
             
             StatusImage.color = new Color(1, 0.92f, 0.016f, 0.5f);
             LevelItemImageComponentReference.color = new Color(1, 0.92f, 0.016f, 0.5f);

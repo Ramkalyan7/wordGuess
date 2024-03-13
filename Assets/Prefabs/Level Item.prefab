@@ -228,7 +228,6 @@ MonoBehaviour:
   LevelText: {fileID: 1182926223835794467}
   StatusImage: {fileID: 5790314742400959735}
   LevelItem: {fileID: 9071494415218111121}
-  GameScreenPrefab: {fileID: 6721188308863182454, guid: 64344809914e44daa946b66930247ccc, type: 3}
   CurrentLevelSprite: {fileID: 21300000, guid: c1d75f98aabb24141aec960df831976c, type: 3}
   LockedLevelSprite: {fileID: 21300000, guid: f19f035cf184b4d8b9b0400a3c68e0d7, type: 3}
   CompletedLevelSprite: {fileID: 21300000, guid: 51b7118b8a44a44d9b6d2b1aad1e3370, type: 3}

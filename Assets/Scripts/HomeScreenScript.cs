@@ -78,7 +78,7 @@ public class HomeScreenScript : MonoBehaviour
             if (levelItemInstance == null) continue;
             var leveItemScriptReference = levelItemInstance.GetComponent<LevelItemScript>();
             if (leveItemScriptReference == null) continue;
-            leveItemScriptReference.SetLevelsTextAndStatus(index, wordItem.word);
+            leveItemScriptReference.SetLevelsTextAndStatus(index);
             index++;
         }
     }
