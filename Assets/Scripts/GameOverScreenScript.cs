@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class GameOverScreenScript : MonoBehaviour
 {
     //if GameResult is True it means user won and else he lost 
-    private bool GameResult;
+    private bool IsWon;
     private string SolutionString;
     [SerializeField] private TMP_Text ResultText;
     [SerializeField] private Button TryAgainButton;
@@ -14,7 +14,7 @@ public class GameOverScreenScript : MonoBehaviour
     
     private void Start()
     {
-        if (GameResult == true)
+        if (IsWon == true)
         {
             ResultText.text = Constants.GAMEOVERWINWISHTEXT+ SolutionString;
             TryAgainButton.gameObject.SetActive(false);
@@ -27,7 +27,7 @@ public class GameOverScreenScript : MonoBehaviour
 
     public void setGameOverScreen(bool result , string solString)
     {
-        GameResult = result;
+        IsWon = result;
         SolutionString = solString;
     }
 
@@ -52,7 +52,7 @@ public class GameOverScreenScript : MonoBehaviour
     public void GoBackToHomeScreenButtonClickHandler()
     {
         
-        GameObject HomeScreenInstance = Instantiate(HomeScreenPrefab,transform.parent);
+        Instantiate(HomeScreenPrefab,transform.parent);
         Destroy(gameObject);
     }
 
