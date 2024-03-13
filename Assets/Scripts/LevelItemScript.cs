@@ -63,19 +63,7 @@ public class LevelItemScript : MonoBehaviour
 
     public void HandleLevelItemClick()
     {
-        // GameObject GameScreenPrefabInstance = Instantiate(GameScreenPrefab, _canvasTransform);
-        // if (GameScreenPrefabInstance != null)
-        // {
-        //     var GameScreenScriptReference = GameScreenPrefabInstance.GetComponent<GameScreenScript>();
-        //     if (GameScreenScriptReference != null)
-        //     {
-        //         GameScreenScriptReference.SetGameBoard(CurrentLevelSolution,LevelNumber);
-        //     }
-        //    
-        // }
-        
         onButtonClicked?.Invoke();
-        
     }
 }
 
