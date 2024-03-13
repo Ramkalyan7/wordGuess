@@ -17,8 +17,6 @@ public class LevelItemScript : MonoBehaviour
     [SerializeField] private Sprite CompletedLevelSprite;
     
 
-    private int LevelNumber;
-    private string CurrentLevelSolution;
   
 
   
@@ -27,8 +25,7 @@ public class LevelItemScript : MonoBehaviour
     {
 
         LevelText.text = "Level "+(levelIndex+1);
-        CurrentLevelSolution = currentSolution;
-        LevelNumber = levelIndex + 1;
+      
         //StatusText.text = statusText;
         Image LevelItemImageComponentReference = LevelItem.GetComponent<Image>();
 
