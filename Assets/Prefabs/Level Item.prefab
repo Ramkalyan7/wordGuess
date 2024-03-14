@@ -231,6 +231,7 @@ MonoBehaviour:
   CurrentLevelSprite: {fileID: 21300000, guid: c1d75f98aabb24141aec960df831976c, type: 3}
   LockedLevelSprite: {fileID: 21300000, guid: f19f035cf184b4d8b9b0400a3c68e0d7, type: 3}
   CompletedLevelSprite: {fileID: 21300000, guid: 51b7118b8a44a44d9b6d2b1aad1e3370, type: 3}
+  ToastPrefab: {fileID: 1165264306100373735, guid: 0c99337c631924a9aa51c4797d17d539, type: 3}
 --- !u!114 &9071494415218111121
 MonoBehaviour:
   m_ObjectHideFlags: 0

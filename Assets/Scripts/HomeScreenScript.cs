@@ -14,11 +14,14 @@ public class HomeScreenScript : MonoBehaviour
     [SerializeField] private GameObject LevelItemPrefab;
     [SerializeField] private RectTransform ParentRectTransform;
     [SerializeField] private GameObject GameScreenPrefab;
+    [SerializeField] private GameObject ToastPrefab;
+    private GameObject ToastPrefabReference;
     
     
     private void Awake()
     {
        LevelItemScript.onButtonClicked += InstantiateGameScreenAndDestroyHomeScreenGameObject;
+       LevelItemScript.LockedLevelIsClicked += ShowToast;
     }
 
     public void InstantiateGameScreenAndDestroyHomeScreenGameObject()
@@ -87,6 +90,7 @@ public class HomeScreenScript : MonoBehaviour
     private void OnDestroy()
     {
         LevelItemScript.onButtonClicked -= InstantiateGameScreenAndDestroyHomeScreenGameObject;
+        LevelItemScript.LockedLevelIsClicked -= ShowToast;
     }
 
     public void ExitGame()
@@ -95,5 +99,22 @@ public class HomeScreenScript : MonoBehaviour
             UnityEditor.EditorApplication.isPlaying = false;
         #endif
             Application.Quit();
+    }
+    
+    void ShowToast()
+    {
+        if (ToastPrefabReference == null)
+        {
+            ToastPrefabReference = Instantiate(ToastPrefab,gameObject.transform);
+        }
+        if (ToastPrefabReference != null)
+        {
+            Invoke(nameof(DestroyToast),0.8f);
+        }
+    }
+
+    void DestroyToast()
+    {
+        Destroy(ToastPrefabReference);
     }
 }

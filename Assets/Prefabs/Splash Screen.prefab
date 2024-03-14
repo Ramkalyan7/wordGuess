@@ -189,6 +189,7 @@ MonoBehaviour:
   LoginScreenPrefab: {fileID: 7820863917224526557, guid: 5c8e416960b8b462ea706cf8862bfdac, type: 3}
   HomeScreenPrefab: {fileID: 7376093092218314880, guid: 0b2441c2c8fe64124889ea80f557f1a1, type: 3}
   SplashScreen: {fileID: 888803780065631981}
+  audioName: {fileID: 0}
 --- !u!222 &8291031520646071138
 CanvasRenderer:
   m_ObjectHideFlags: 0

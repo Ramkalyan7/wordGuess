@@ -7,6 +7,7 @@ public class LevelItemScript : MonoBehaviour
 {
 
     public static Action onButtonClicked;
+    public static Action LockedLevelIsClicked;
 
     // Start is called before the first frame update
     [SerializeField] private TMP_Text LevelText;
@@ -15,6 +16,10 @@ public class LevelItemScript : MonoBehaviour
     [SerializeField] private Sprite CurrentLevelSprite;
     [SerializeField] private Sprite LockedLevelSprite;
     [SerializeField] private Sprite CompletedLevelSprite;
+   
+    
+    private int LevelNumber;
+    
     
 
   
@@ -25,6 +30,7 @@ public class LevelItemScript : MonoBehaviour
     {
 
         LevelText.text = "Level "+(levelIndex+1);
+        LevelNumber = levelIndex + 1;
       
         //StatusText.text = statusText;
         Image LevelItemImageComponentReference = LevelItem.GetComponent<Image>();
@@ -34,9 +40,8 @@ public class LevelItemScript : MonoBehaviour
         {
             //StatusText.text = "Locked";
             StatusImage.sprite = LockedLevelSprite;
-            LevelItem.interactable = false;
             StatusImage.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-            LevelItemImageComponentReference.color=new Color(0, 0, 0,0.8f);
+            LevelItemImageComponentReference.color=new Color(0.5f, 0.5f, 0.5f,0.5f);
         }
         else if (levelIndex + 1 < currentLevelOfUser)
         {
@@ -60,8 +65,19 @@ public class LevelItemScript : MonoBehaviour
 
     public void HandleLevelItemClick()
     {
-        onButtonClicked?.Invoke();
+        if (LevelNumber > User.Instance.CurrentLevel)
+        {
+          LockedLevelIsClicked?.Invoke();
+            
+        }
+        else
+        {
+            onButtonClicked?.Invoke();
+        }
+        
     }
+
+  
 }
 
 

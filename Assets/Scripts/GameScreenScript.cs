@@ -16,6 +16,7 @@ public class GameScreenScript : MonoBehaviour
     [SerializeField] private GameObject GameOverScreenPrefab;
     [SerializeField] private TMP_Text UserNameText;
     [SerializeField] private TMP_Text HintText;
+    [SerializeField] private AudioSource SubmitButtonAudio;
 
     [SerializeField] private Button SubmitButton;
    // [SerializeField] private GameObject KeyBoardKeyPrefab;
@@ -180,7 +181,7 @@ public class GameScreenScript : MonoBehaviour
         
         
  
-        
+        SubmitButtonAudio.Play();
         if (CurrentChanceIndex == 5 && CurrentChanceNumberIndex <= 5)
         {   //increase chance number number
             //we have to create an object chance class initialise it with the fields required for it
