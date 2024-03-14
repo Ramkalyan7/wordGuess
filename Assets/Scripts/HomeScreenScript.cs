@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
@@ -22,6 +23,10 @@ public class HomeScreenScript : MonoBehaviour
     {
        LevelItemScript.onButtonClicked += InstantiateGameScreenAndDestroyHomeScreenGameObject;
        LevelItemScript.LockedLevelIsClicked += ShowToast;
+       
+       //load dictionary
+       
+       LoadDictionary();
     }
 
     public void InstantiateGameScreenAndDestroyHomeScreenGameObject()
@@ -117,5 +122,12 @@ public class HomeScreenScript : MonoBehaviour
     void DestroyToast()
     {
         Destroy(ToastPrefabReference);
+    }
+
+    private void LoadDictionary()
+    {
+        var textFile = Resources.Load("enable") as TextAsset;
+        string dictionaryWords = textFile.text;
+        DictionaryWords.Instance.dictionary = new HashSet<string>(dictionaryWords.Split('\n'));
     }
 }

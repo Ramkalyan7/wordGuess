@@ -1,9 +1,7 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
-using System.Threading.Tasks;
 
 
 public class GameScreenScript : MonoBehaviour
@@ -55,7 +53,9 @@ public class GameScreenScript : MonoBehaviour
 
     private void SetSubmitButtonState()
     {
-        if (CurrentChanceIndex == 5)
+        var CurrentChanceScriptReference = AllChances[CurrentChanceNumberIndex];
+        var wordEnteredInCurrentChance = CurrentChanceScriptReference.GetString();
+        if (CurrentChanceIndex == 5 && DictionaryWords.Instance.dictionary.Contains(wordEnteredInCurrentChance.ToLower()))
         {
             SubmitButton.interactable = true;
         }
@@ -197,8 +197,11 @@ public class GameScreenScript : MonoBehaviour
             currentChanceObject.ChanceNumber = CurrentChanceNumberIndex + 1;
              var CurrentChanceScriptReference = AllChances[CurrentChanceNumberIndex];
             currentChanceObject.StringEntered =CurrentChanceScriptReference.GetString();
-            
-           if(User.Instance.CurrentLevel==Level) User.Instance.Chances.Add(currentChanceObject);
+
+            if (User.Instance.CurrentLevel == Level)
+            {
+                User.Instance.Chances.Add(currentChanceObject);
+            }
             
            
             CurrentChanceNumberIndex++;
