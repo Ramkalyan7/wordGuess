@@ -32,7 +32,7 @@ public class HomeScreenScript : MonoBehaviour
             var GameScreenScriptReference = GameScreenPrefabInstance.GetComponent<GameScreenScript>();
             if (GameScreenScriptReference != null)
             {
-                var currentLevel = User.Instance.CurrentLevel;
+                var currentLevel = User.Instance.CurrentPlayingLevel;
                 GameScreenScriptReference.SetGameBoard(Words.WordsInstance.WordsList[currentLevel-1].word,currentLevel);
             }
            
@@ -56,6 +56,7 @@ public class HomeScreenScript : MonoBehaviour
     {
         string fileContents = File.ReadAllText(Constants.SAVEFILE);
         User.Instance = JsonUtility.FromJson<User>(fileContents);
+        User.Instance.CurrentPlayingLevel = User.Instance.CurrentLevel;
         RenderUserName(); 
     }
 
@@ -76,7 +77,7 @@ public class HomeScreenScript : MonoBehaviour
     {
         var index = 0;
         foreach (var wordItem in Words.WordsInstance.WordsList)
-        {
+        {   
             var levelItemInstance= Instantiate(LevelItemPrefab, ParentRectTransform);
             if (levelItemInstance == null) continue;
             var leveItemScriptReference = levelItemInstance.GetComponent<LevelItemScript>();

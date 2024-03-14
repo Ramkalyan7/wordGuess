@@ -195,7 +195,7 @@ public class GameScreenScript : MonoBehaviour
              var CurrentChanceScriptReference = AllChances[CurrentChanceNumberIndex];
             currentChanceObject.StringEntered =CurrentChanceScriptReference.GetString();
             
-            User.Instance.Chances.Add(currentChanceObject);
+           if(User.Instance.CurrentLevel==Level) User.Instance.Chances.Add(currentChanceObject);
             
            
             CurrentChanceNumberIndex++;
@@ -206,9 +206,11 @@ public class GameScreenScript : MonoBehaviour
                 EndCurrentLevel();
                 return;
             }
-            
-            string jsonString = JsonUtility.ToJson(User.Instance);
-            File.WriteAllText(Constants.SAVEFILE,jsonString);
+
+            if(User.Instance.CurrentLevel==Level){
+                string jsonString = JsonUtility.ToJson(User.Instance);
+                File.WriteAllText(Constants.SAVEFILE, jsonString);
+            }
             CurrentChanceScriptReference.ColorTheString(SolutionString);
         }
 
@@ -240,24 +242,34 @@ public class GameScreenScript : MonoBehaviour
     private void ShowGameOverScreen()
     {
         //initialise game over screen.
-        var CurrentChanceScriptReference = AllChances[CurrentChanceNumberIndex-1];
-        string lastChanceString =CurrentChanceScriptReference.GetString().ToUpper();
-        GameObject GameOverScreenPrefabInstance= Instantiate(GameOverScreenPrefab, transform.parent);
-           
-        Debug.Log(lastChanceString+" "+SolutionString);
+        var CurrentChanceScriptReference = AllChances[CurrentChanceNumberIndex - 1];
+        string lastChanceString = CurrentChanceScriptReference.GetString().ToUpper();
+        GameObject GameOverScreenPrefabInstance = Instantiate(GameOverScreenPrefab, transform.parent);
+
+        Debug.Log(lastChanceString + " " + SolutionString);
         if (lastChanceString.Equals(SolutionString.ToUpper()))
         {
-            GameOverScreenPrefabInstance.GetComponent<GameOverScreenScript>().setGameOverScreen(true,SolutionString);
-            User.Instance.CurrentLevel++;
+            GameOverScreenPrefabInstance.GetComponent<GameOverScreenScript>().setGameOverScreen(true, SolutionString);
+            if (User.Instance.CurrentLevel == Level)
+            {
+                User.Instance.CurrentLevel++;
+            }
         }
         else
-        { 
-            GameOverScreenPrefabInstance.GetComponent<GameOverScreenScript>().setGameOverScreen(false,SolutionString);
-       
+        {
+            GameOverScreenPrefabInstance.GetComponent<GameOverScreenScript>().setGameOverScreen(false, SolutionString);
+
         }
-        User.Instance.Chances.Clear();
-        string jsonString = JsonUtility.ToJson(User.Instance);
-        File.WriteAllText(Constants.SAVEFILE,jsonString);
+
+        if (User.Instance.CurrentLevel == Level+1)
+        {
+            User.Instance.Chances.Clear();
+            string jsonString = JsonUtility.ToJson(User.Instance);
+            File.WriteAllText(Constants.SAVEFILE, jsonString);
+        }
+        
+        Debug.Log(User.Instance.CurrentLevel+" "+Level);
+
         Destroy(gameObject);
     }
 

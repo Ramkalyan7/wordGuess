@@ -47,7 +47,6 @@ public class LevelItemScript : MonoBehaviour
         {
            // StatusText.text = "Completed";
            StatusImage.sprite = CompletedLevelSprite;
-           LevelItem.interactable = false;
            StatusImage.color = new Color(0, 1, 0.5f, 1);
             LevelItemImageComponentReference.color = new Color(0, 1, 0, 0.5f);
             
@@ -72,6 +71,7 @@ public class LevelItemScript : MonoBehaviour
         }
         else
         {
+            User.Instance.CurrentPlayingLevel = LevelNumber;
             onButtonClicked?.Invoke();
         }
         
