@@ -32,6 +32,8 @@ public class GameScreenScript : MonoBehaviour
 
     private int CurrentChanceNumberIndex = 0;
     private int CurrentChanceIndex = 0;
+
+    private bool IsUserPlayingLatestLevel = false;
     
     //1.first i have to get that user have selected which level .
     //    if user selected current level I have to populate users data and render the gamescreen from user .............
@@ -124,6 +126,10 @@ public class GameScreenScript : MonoBehaviour
     {
         SolutionString = solutionString;
         Level = level;
+        if (Level == User.Instance.CurrentLevel)
+        {
+            IsUserPlayingLatestLevel = true;
+        }
         Debug.Log(solutionString + " "+ level);
         HintText.text ="Hint:"+ Words.WordsInstance.WordsList[level - 1].hint;
         InitGameboard();
@@ -178,9 +184,6 @@ public class GameScreenScript : MonoBehaviour
 
     public void HandleCurrentChanceSubmitButtonClick()
     {
-        
-        
- 
         SubmitButtonAudio.Play();
         if (CurrentChanceIndex == 5 && CurrentChanceNumberIndex <= 5)
         {   //increase chance number number
@@ -222,11 +225,7 @@ public class GameScreenScript : MonoBehaviour
             //then save the user to the json.
             //color the text.
             //show user game over screen
-            
          EndCurrentLevel();
-            
-            
-         
         }
         
     }
@@ -252,6 +251,8 @@ public class GameScreenScript : MonoBehaviour
             GameOverScreenPrefabInstance.GetComponent<GameOverScreenScript>().setGameOverScreen(true, SolutionString);
             if (User.Instance.CurrentLevel == Level)
             {
+                
+                Debug.Log(User.Instance.CurrentLevel +" "+Level);
                 User.Instance.CurrentLevel++;
             }
         }
@@ -261,7 +262,7 @@ public class GameScreenScript : MonoBehaviour
 
         }
 
-        if (User.Instance.CurrentLevel == Level+1)
+        if (User.Instance.CurrentLevel == Level+1 && IsUserPlayingLatestLevel)
         {
             User.Instance.Chances.Clear();
             string jsonString = JsonUtility.ToJson(User.Instance);
