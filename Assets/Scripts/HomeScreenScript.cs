@@ -128,6 +128,6 @@ public class HomeScreenScript : MonoBehaviour
     {
         var textFile = Resources.Load("enable") as TextAsset;
         string dictionaryWords = textFile.text;
-        DictionaryWords.Instance.dictionary = new HashSet<string>(dictionaryWords.Split('\n'));
+        DictionaryWords.Instance.dictionary = new List<string>(dictionaryWords.Split('\n'));
     }
 }

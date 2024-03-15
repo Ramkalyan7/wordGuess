@@ -15,7 +15,7 @@ public class GameOverScreenScript : MonoBehaviour
     
     private void Start()
     {
-        if (IsWon == true)
+        if (IsWon )
         {
             ResultText.text = Constants.GAMEOVERWINWISHTEXT+ SolutionString;
             TryAgainButton.gameObject.SetActive(false);

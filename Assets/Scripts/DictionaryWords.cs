@@ -4,25 +4,26 @@ using System.Collections.Generic;
 
 public class DictionaryWords
 {
-   public HashSet<string> dictionary = new HashSet<string>();
+   //public HashSet<string> dictionary = new HashSet<string>();
+   public List<string> dictionary;
 
-   private static DictionaryWords _Instance;
+   private static DictionaryWords _instance;
 
    public static DictionaryWords Instance
    {
       get
       {
-         if (_Instance == null)
+         if (_instance == null)
          {
-            _Instance = new DictionaryWords();
+            _instance = new DictionaryWords();
          }
 
-         return _Instance;
+         return _instance;
       }
 
       set
       {
-         _Instance = value;
+         _instance = value;
       }
    }
 }
