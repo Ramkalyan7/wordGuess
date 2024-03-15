@@ -7,10 +7,7 @@ public class ChanceScript : MonoBehaviour
     public void SetText(string enteredAlphabet,int index)
     {
         textItems[index].text.text = enteredAlphabet;
-        if (index == 4)
-        {
-            textItems[index].image.color = Constants.WHITECOLOR;
-        }
+
     }
 
     public string GetString()

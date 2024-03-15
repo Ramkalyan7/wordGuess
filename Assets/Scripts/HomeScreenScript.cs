@@ -131,7 +131,7 @@ public class HomeScreenScript : MonoBehaviour
         }
         if (ToastPrefabReference != null)
         {
-            Invoke(nameof(DestroyToast),0.8f);
+            Invoke(nameof(DestroyToast),1.5f);
         }
     }
 

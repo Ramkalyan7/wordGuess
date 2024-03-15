@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,25 +23,22 @@ public class GameScreenScript : MonoBehaviour
 
 
     private ChanceScript[] AllChances = new ChanceScript[6];
-
-    
-
     [SerializeField] private Button[] KeyBoard;
 
     private int CurrentChanceNumberIndex = 0;
     private int CurrentChanceIndex = 0;
 
     private bool IsUserPlayingLatestLevel = false;
-    
+
+    private void Start()
+    {
+        HighlightCurrentActiveRow();
+    }
+
     //1.first i have to get that user have selected which level .
     //    if user selected current level I have to populate users data and render the gamescreen from user .............
 
-    public void Update()
-    {
-        HighlightCurrentActiveRow();
-        SetSubmitButtonState();
-
-    }
+   
 
     public void HighlightCurrentActiveRow()
     {
@@ -178,7 +176,13 @@ public class GameScreenScript : MonoBehaviour
     {
         Debug.Log("clicked on handlekeyboardclick");
         if(CurrentChanceIndex<5)AllChances[CurrentChanceNumberIndex].SetText(alphabet, CurrentChanceIndex);
-        if (CurrentChanceIndex < 5) CurrentChanceIndex++;
+        if (CurrentChanceIndex < 5)
+        {
+            CurrentChanceIndex++;
+            SetSubmitButtonState();
+            
+        }
+        
     }
 
     public void HandleCurrentChanceSubmitButtonClick()
@@ -204,6 +208,8 @@ public class GameScreenScript : MonoBehaviour
             
            
             CurrentChanceNumberIndex++;
+
+            HighlightCurrentActiveRow();
             CurrentChanceIndex = 0;
 
             if (currentChanceObject.StringEntered.ToUpper().Equals(SolutionString.ToUpper()))
@@ -302,6 +308,7 @@ public class GameScreenScript : MonoBehaviour
         if (CurrentChanceIndex > 0)
         {
             CurrentChanceIndex--; 
+            SetSubmitButtonState();
             AllChances[CurrentChanceNumberIndex].SetText("", CurrentChanceIndex);
         }
         else if (CurrentChanceIndex == 0)
