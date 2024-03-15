@@ -97,12 +97,8 @@ public class HomeScreenScript : MonoBehaviour
             index++;
         }
 
-        var scrollLevel = User.Instance.CurrentLevel;
-        if (scrollLevel == 1)
-        {
-            scrollLevel = 0;
-        }
-        LevelItemsScrollRect.verticalNormalizedPosition = 1-(float)(scrollLevel)/Words.WordsInstance.WordsList.Count;
+       
+        LevelItemsScrollRect.verticalNormalizedPosition = 1-(float)(User.Instance.CurrentLevel-1)/Words.WordsInstance.WordsList.Count;
     }
     
 

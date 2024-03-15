@@ -33,6 +33,7 @@ public class GameScreenScript : MonoBehaviour
     private void Start()
     {
         HighlightCurrentActiveRow();
+        SetSubmitButtonState();
     }
 
     //1.first i have to get that user have selected which level .
@@ -209,7 +210,7 @@ public class GameScreenScript : MonoBehaviour
            
             CurrentChanceNumberIndex++;
 
-            HighlightCurrentActiveRow();
+            
             CurrentChanceIndex = 0;
 
             if (currentChanceObject.StringEntered.ToUpper().Equals(SolutionString.ToUpper()))
@@ -223,6 +224,7 @@ public class GameScreenScript : MonoBehaviour
                 File.WriteAllText(Constants.SAVEFILE, jsonString);
             }
             CurrentChanceScriptReference.ColorTheString(SolutionString);
+            HighlightCurrentActiveRow();
         }
 
         if (CurrentChanceNumberIndex == 6)
