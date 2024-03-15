@@ -9,6 +9,7 @@ public class EditUserNameScript : MonoBehaviour
 {
     [SerializeField] private Button SaveButton;
     [SerializeField] private Button CancelButton;
+    [SerializeField] private Button SubmitButton;
 
     [SerializeField] private TMP_InputField UserNameInputField;
 
@@ -51,4 +52,7 @@ public class EditUserNameScript : MonoBehaviour
     {
         DestroyUserNameEditGameOject?.Invoke();
     }
+
+
+
 }

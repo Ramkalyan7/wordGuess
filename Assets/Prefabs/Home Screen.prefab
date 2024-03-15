@@ -704,7 +704,7 @@ MonoBehaviour:
   ParentRectTransform: {fileID: 7376093091826877242}
   GameScreenPrefab: {fileID: 6721188308863182454, guid: 64344809914e44daa946b66930247ccc, type: 3}
   ToastPrefab: {fileID: 1165264306100373735, guid: 0c99337c631924a9aa51c4797d17d539, type: 3}
-  EditUserNamePrefab: {fileID: 5659386970457611514, guid: 7490ec6d667e642e19a932e900b50d82, type: 3}
+  LoginScreenPrefab: {fileID: 7820863917224526557, guid: 5c8e416960b8b462ea706cf8862bfdac, type: 3}
   EditButton: {fileID: 6660637130880665676}
   LevelItemsScrollRect: {fileID: 7376093091873032826}
 --- !u!222 &2779801281638915309

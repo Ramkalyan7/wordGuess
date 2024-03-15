@@ -19,7 +19,8 @@ public class SplashScreenScript : MonoBehaviour
         }
         else
         {
-            Instantiate(LoginScreenPrefab, transform.parent);
+            GameObject LoginScreenPrefabReference=Instantiate(LoginScreenPrefab, transform.parent);
+            LoginScreenPrefabReference.GetComponent<LoginScript>().InitLoginScreen();
         }
         Destroy(gameObject);
         Debug.Log("Enter button is clicked");

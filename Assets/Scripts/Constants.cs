@@ -8,7 +8,7 @@ public class Constants
   public static Color YELLOWCOLOR = new Color(1, 0.92f, 0.016f, 1);
   public static Color REDCOLOR = new Color(1, 0, 0, 1);
   public static Color SKYBLUECOLOR= new Color(0.53f,0.8f,0.92f,1);
-  public static string SAVEFILE = Application.persistentDataPath + "/gameedata.json";
+  public static string SAVEFILE = Application.persistentDataPath + "/gmdata.json";
   public static string GAMEOVERWINWISHTEXT = "Congrats You won ! Word is ";
   public static string GAMEOVERLOSTWISHTEXT =  "Sorry , You Lost !";
   

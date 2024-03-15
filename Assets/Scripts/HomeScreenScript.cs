@@ -18,8 +18,8 @@ public class HomeScreenScript : MonoBehaviour
     [SerializeField] private GameObject GameScreenPrefab;
     [SerializeField] private GameObject ToastPrefab;
     private GameObject ToastPrefabReference;
-    [SerializeField] private GameObject EditUserNamePrefab;
-    private GameObject EditUserNamePrefabReference;
+    [SerializeField] private GameObject LoginScreenPrefab;
+    private GameObject LoginScreenPrefabReference;
     [SerializeField] private Button EditButton;
     [SerializeField] private ScrollRect LevelItemsScrollRect;
     
@@ -29,7 +29,7 @@ public class HomeScreenScript : MonoBehaviour
     {
        LevelItemScript.onButtonClicked += InstantiateGameScreenAndDestroyHomeScreenGameObject;
        LevelItemScript.LockedLevelIsClicked += ShowToast;
-       EditUserNameScript.DestroyUserNameEditGameOject += DestroyEditUserNameReference;
+       LoginScript.DestroyUserNameEditGameOject += DestroyEditUserNameReference;
        //load dictionary
        
        LoadDictionary();
@@ -109,7 +109,7 @@ public class HomeScreenScript : MonoBehaviour
         ShowToast();
         LevelItemScript.onButtonClicked -= InstantiateGameScreenAndDestroyHomeScreenGameObject;
         LevelItemScript.LockedLevelIsClicked -= ShowToast;
-        EditUserNameScript.DestroyUserNameEditGameOject -= DestroyEditUserNameReference;
+        LoginScript.DestroyUserNameEditGameOject -= DestroyEditUserNameReference;
 
     }
 
@@ -149,13 +149,14 @@ public class HomeScreenScript : MonoBehaviour
 
     public void ShowEditUserNameGameObject()
     {
-        EditUserNamePrefabReference = Instantiate(EditUserNamePrefab, gameObject.transform);
+        LoginScreenPrefabReference = Instantiate(LoginScreenPrefab, gameObject.transform);
+        LoginScreenPrefabReference.GetComponent<LoginScript>().InitEditUserNameScreen();
         EditButton.gameObject.SetActive(false);
     }
 
     public void DestroyEditUserNameReference()
     {
-        Destroy(EditUserNamePrefabReference);
+        Destroy(LoginScreenPrefabReference);
         EditButton.gameObject.SetActive(true);
         RenderUserName();
     }
