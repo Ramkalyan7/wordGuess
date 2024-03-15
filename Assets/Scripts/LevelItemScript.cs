@@ -67,7 +67,6 @@ public class LevelItemScript : MonoBehaviour
         if (LevelNumber > User.Instance.CurrentLevel)
         {
           LockedLevelIsClicked?.Invoke();
-            
         }
         else
         {

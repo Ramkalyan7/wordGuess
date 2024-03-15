@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HomeScreenScript : MonoBehaviour
 {
@@ -17,13 +18,18 @@ public class HomeScreenScript : MonoBehaviour
     [SerializeField] private GameObject GameScreenPrefab;
     [SerializeField] private GameObject ToastPrefab;
     private GameObject ToastPrefabReference;
+    [SerializeField] private GameObject EditUserNamePrefab;
+    private GameObject EditUserNamePrefabReference;
+    [SerializeField] private Button EditButton;
+    [SerializeField] private ScrollRect LevelItemsScrollRect;
+    
     
     
     private void Awake()
     {
        LevelItemScript.onButtonClicked += InstantiateGameScreenAndDestroyHomeScreenGameObject;
        LevelItemScript.LockedLevelIsClicked += ShowToast;
-       
+       EditUserNameScript.DestroyUserNameEditGameOject += DestroyEditUserNameReference;
        //load dictionary
        
        LoadDictionary();
@@ -90,23 +96,33 @@ public class HomeScreenScript : MonoBehaviour
             leveItemScriptReference.SetLevelsTextAndStatus(index);
             index++;
         }
+        LevelItemsScrollRect.verticalNormalizedPosition = 1-(float)User.Instance.CurrentLevel/Words.WordsInstance.WordsList.Count;
     }
     
 
     private void OnDestroy()
     {
+        if (true)
+        {
+            ShowToast();
+        }
+        ShowToast();
         LevelItemScript.onButtonClicked -= InstantiateGameScreenAndDestroyHomeScreenGameObject;
         LevelItemScript.LockedLevelIsClicked -= ShowToast;
+        EditUserNameScript.DestroyUserNameEditGameOject -= DestroyEditUserNameReference;
+
     }
 
     public void ExitGame()
     {
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
-        #endif
+        #else
             Application.Quit();
-    }
-    
+        #endif
+
+    } 
+
     void ShowToast()
     {
         if (ToastPrefabReference == null)
@@ -126,8 +142,21 @@ public class HomeScreenScript : MonoBehaviour
 
     private void LoadDictionary()
     {
-        var textFile = Resources.Load("enable") as TextAsset;
+        var textFile = Resources.Load("Dictionary") as TextAsset;
         string dictionaryWords = textFile.text;
         DictionaryWords.Instance.dictionary = new List<string>(dictionaryWords.Split('\n'));
+    }
+
+    public void ShowEditUserNameGameObject()
+    {
+        EditUserNamePrefabReference = Instantiate(EditUserNamePrefab, gameObject.transform);
+        EditButton.gameObject.SetActive(false);
+    }
+
+    public void DestroyEditUserNameReference()
+    {
+        Destroy(EditUserNamePrefabReference);
+        EditButton.gameObject.SetActive(true);
+        RenderUserName();
     }
 }
